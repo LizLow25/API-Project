@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { Spot, Review, SpotImage, User } = require('../../db/models');
+const { Spot, Review, SpotImage, User, ReviewImage } = require('../../db/models');
 
 const { requireAuth } = require('../../utils/auth')
 
@@ -364,13 +364,67 @@ router.delete('/:spotId',
 
         res.json({
             "message": "Successfully deleted"
-          })
+        })
 
     }
 )
 
 
+router.get('/:spotId/reviews',
+    async (req, res) => {
 
+        let spot = await Spot.findByPk(req.params.spotId)
+
+        if (!spot) {
+            res.status(404).json({
+                "message": "Spot couldn't be found"
+            })
+        };
+
+        let reviews = await Review.findAll({
+            where: {
+                spotId: spot.id
+            },
+            include: [
+                {model: User},
+                {model: ReviewImage}
+            ]
+        })
+
+        let reviewList = [];
+
+        reviews.forEach(review => {
+            reviewList.push(review.toJSON())
+
+        });
+
+        reviewList.forEach(review => {
+
+            delete review.User.username
+
+            let reviewimages = review.ReviewImages
+
+            reviewimages.forEach(image => {
+
+                delete image.reviewId
+                delete image.createdAt
+                delete image.updatedAt
+
+            })
+
+
+        })
+
+
+        res.json(reviewList)
+
+
+    }
+
+)
+
+
+router.post()
 
 
 
