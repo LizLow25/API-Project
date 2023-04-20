@@ -1,8 +1,8 @@
 const express = require('express')
 
-const { Spot, Review, SpotImage, User, ReviewImage } = require('../../db/models');
+const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require('../../db/models');
 
-const { requireAuth } = require('../../utils/auth')
+const { requireAuth, restoreUser } = require('../../utils/auth')
 
 
 const { check } = require('express-validator');
@@ -485,9 +485,188 @@ router.post('/:spotId/reviews',
 )
 
 
+router.get('/:spotId/bookings',
+    requireAuth,
+    async (req, res) => {
+        const { user } = req;
+        let person = user.toJSON();
+        const spot = await Spot.findByPk(req.params.spotId)
+
+        if (!spot) {
+            return res.status(404).json({
+                "message": "Spot couldn't be found"
+            })
+        };
+
+        let bookings = await Booking.findAll({
+            where: {
+                spotId: req.params.spotId
+            },
+            include: [
+                { model: User }
+            ]
+        })
+
+        if (!bookings.length) {
+            return res.status(404).json({
+                "message": "Spot couldn't be found"
+            })
+        }
+
+
+        let bookingsList = [];
+
+        bookings.forEach(booking => {
+            bookingsList.push(booking.toJSON())
+
+        });
 
 
 
+        if (person.id !== spot.ownerId) {
+
+            bookingsList.forEach(booking => {
+
+                delete booking.id;
+                delete booking.userId;
+                delete booking.createdAt;
+                delete booking.updatedAt;
+                delete booking.User
+
+            })
+
+            return res.json({ "Bookings": bookingsList })
+
+
+        }
+
+        if (person.id === spot.ownerId) {
+            bookingsList.forEach(booking => {
+
+                delete booking.User.username
+
+            })
+
+            return res.json({ "Bookings": bookingsList })
+
+
+        }
+
+
+
+
+    }
+
+
+)
+
+router.post('/:spotId/bookings',
+    requireAuth,
+    async (req, res) => {
+        const { user } = req;
+        let person = user.toJSON();
+        const spot = await Spot.findByPk(req.params.spotId)
+
+        if (person.id === spot.ownerId) {
+            return res.status(403).json({
+                "message": "Forbidden"
+            })
+        }
+
+        if (!spot) {
+            return res.status(404).json({
+                "message": "Spot couldn't be found"
+            })
+        };
+
+        let { startDate, endDate } = req.body
+
+        //let reqStart = startDate.toDateString()
+        //let reqEnd = endDate.toDateString()
+
+        let reqStartObj = new Date(startDate)
+        let reqEndObj = new Date(endDate)
+
+        let reqStartTime = reqStartObj.getTime()
+        let reqEndTime = reqEndObj.getTime()
+
+        //console.log(reqStartTime, reqEndTime)
+
+        if (reqStartTime >= reqEndTime) {
+            return res.status(400).json({
+                "message": "Bad Request",
+                "errors": {
+                  "endDate": "endDate cannot be on or before startDate"
+                }
+              })
+        }
+
+
+
+        let bookings = await Booking.findAll({
+            where: {
+                spotId: spot.id
+            }
+        })
+
+        let bookingsList = [];
+
+        bookings.forEach(booking => {
+            bookingsList.push(booking.toJSON())
+
+        });
+
+        for (let booking of bookingsList) {
+            let start = booking.startDate.toDateString()
+            let end = booking.endDate.toDateString()
+
+            let startD = new Date(start)
+            let endD = new Date(end)
+
+            let startBookedTime = startD.getTime()
+            let endBookedTime = endD.getTime()
+
+            //if the requested start date is inside another booking, res.json(error)
+            if (reqStartTime >= startBookedTime && reqStartTime <= endBookedTime) {
+
+                return res.status(403).json({
+                    "message": "Sorry, this spot is already booked for the specified dates",
+                    "errors": {
+                        "startDate": "Start date conflicts with an existing booking"
+                    }
+                })
+
+            }
+            //if the requested end date is inside another booking
+            if (reqEndTime >= startBookedTime && reqEndTime <= endBookedTime) {
+
+                return res.status(403).json({
+                    "message": "Sorry, this spot is already booked for the specified dates",
+                    "errors": {
+                        "endDate": "End date conflicts with an existing booking"
+                    }
+                })
+
+            }
+
+
+        }
+
+        let newBooking = await Booking.create({
+            startDate,
+            endDate,
+            spotId: req.params.spotId,
+            userId: person.id
+        })
+
+
+        return res.json(newBooking)
+
+
+    }
+
+
+)
 
 
 
