@@ -223,7 +223,7 @@ router.get('/:spotId',
 
             res.json(spot)
         } else {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         }
@@ -275,13 +275,13 @@ router.post('/:spotId/images',
         let person = user.toJSON()
 
         if (!spot) {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         }
 
         if (spot.ownerId !== person.id) {
-            res.status(403).json({
+            return res.status(403).json({
                 "message": "Forbidden"
             })
 
@@ -319,13 +319,13 @@ router.put('/:spotId',
         let person = user.toJSON();
 
         if (!spot) {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         };
 
         if (spot.ownerId !== person.id) {
-            res.status(403).json({
+            return res.status(403).json({
                 "message": "Forbidden"
             })
 
@@ -359,13 +359,13 @@ router.delete('/:spotId',
         let person = user.toJSON();
 
         if (!spot) {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         };
 
         if (spot.ownerId !== person.id) {
-            res.status(403).json({
+            return res.status(403).json({
                 "message": "Forbidden"
             })
 
@@ -387,7 +387,7 @@ router.get('/:spotId/reviews',
         let spot = await Spot.findByPk(req.params.spotId)
 
         if (!spot) {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         };
@@ -444,7 +444,7 @@ router.post('/:spotId/reviews',
         let person = user.toJSON();
 
         if (!spot) {
-            res.status(404).json({
+            return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         };
@@ -456,7 +456,7 @@ router.post('/:spotId/reviews',
             }
         })
 
-       
+
 
         if (prevReview.length) {
             //kanban says 403 status and readme says 500 status??
