@@ -74,6 +74,73 @@ router.get('/current',
 
 )
 
+router.post('/:reviewId/images',
+    requireAuth,
+    async (req, res) => {
+        const { user } = req;
+        let person = user.toJSON();
+
+        let review = await Review.findByPk(req.params.reviewId)
+        const { url } = req.body
+
+
+        if (review.userId !== person.id) {
+            res.status(403).json({
+                "message": "Forbidden"
+            })
+
+        };
+
+
+
+
+    }
+
+
+)
+
+
+
+
+
+
+
+
+router.delete('/:reviewId',
+    requireAuth,
+    async (req, res) => {
+        const { user } = req;
+        let person = user.toJSON();
+
+
+        let review = await Review.findByPk(req.params.reviewId)
+
+
+
+        if (!review) {
+            return res.status(404).json({
+                "message": "Review couldn't be found"
+            })
+        }
+
+        if (review.userId !== person.id) {
+            return res.status(403).json({
+                "message": "Forbidden"
+            })
+        }
+
+        await review.destroy()
+
+
+        res.json({
+            "message": "Successfully deleted"
+        })
+
+
+
+    }
+)
+
 
 
 

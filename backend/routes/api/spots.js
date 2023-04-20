@@ -43,6 +43,17 @@ const validateSpot = [
     handleValidationErrors
 ];
 
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+]
+
 
 
 const router = express.Router();
@@ -386,8 +397,8 @@ router.get('/:spotId/reviews',
                 spotId: spot.id
             },
             include: [
-                {model: User},
-                {model: ReviewImage}
+                { model: User },
+                { model: ReviewImage }
             ]
         })
 
@@ -424,7 +435,54 @@ router.get('/:spotId/reviews',
 )
 
 
-router.post()
+router.post('/:spotId/reviews',
+    requireAuth,
+    validateReview,
+    async (req, res) => {
+        const spot = await Spot.findByPk(req.params.spotId);
+        const { user } = req;
+        let person = user.toJSON();
+
+        if (!spot) {
+            res.status(404).json({
+                "message": "Spot couldn't be found"
+            })
+        };
+
+        let prevReview = await Review.findAll({
+            where: {
+                userId: person.id,
+                spotId: spot.id
+            }
+        })
+
+       
+
+        if (prevReview.length) {
+            //kanban says 403 status and readme says 500 status??
+            return res.status(500).json({
+                "message": "User already has a review for this spot"
+            })
+        }
+
+        const { review, stars } = req.body
+
+
+        let newReview = await Review.create({
+            userId: person.id,
+            spotId: spot.id,
+            review,
+            stars
+
+        })
+
+
+        res.json(newReview)
+    }
+
+
+
+)
 
 
 
