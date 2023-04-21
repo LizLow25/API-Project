@@ -581,8 +581,6 @@ router.post('/:spotId/bookings',
 
         let { startDate, endDate } = req.body
 
-        //let reqStart = startDate.toDateString()
-        //let reqEnd = endDate.toDateString()
 
         let reqStartObj = new Date(startDate)
         let reqEndObj = new Date(endDate)
@@ -596,9 +594,9 @@ router.post('/:spotId/bookings',
             return res.status(400).json({
                 "message": "Bad Request",
                 "errors": {
-                  "endDate": "endDate cannot be on or before startDate"
+                    "endDate": "endDate cannot be on or before startDate"
                 }
-              })
+            })
         }
 
 
@@ -667,6 +665,8 @@ router.post('/:spotId/bookings',
 
 
 )
+
+
 
 
 
