@@ -52,15 +52,15 @@ router.get('/current',
 
         })
 
-       // if (bookings.userId !== person.id) {
+        // if (bookings.userId !== person.id) {
         //    return res.status(403).json({
-       //         "message": "Forbidden"
-       //     })
-//}
+        //         "message": "Forbidden"
+        //     })
+        //}
 
 
 
-        res.json({"Bookings": bookingsList})
+        res.json({ "Bookings": bookingsList })
 
 
     }
@@ -114,7 +114,7 @@ router.put('/:bookingId',
         if (bookedEndTime < Date.now()) {
             return res.status(404).json({
                 "message": "Past bookings can't be modified"
-              })
+            })
 
         }
 
@@ -197,6 +197,55 @@ router.put('/:bookingId',
 
 
     }
+
+
+)
+
+router.delete('/:bookingId',
+    requireAuth,
+    async (req, res) => {
+        const { user } = req;
+        let person = user.toJSON();
+
+        let booking = await Booking.findByPk(req.params.bookingId, {
+            include: [{model: Spot}]
+        })
+
+        if (!booking) {
+            return res.status(404).json({
+                "message": "Booking couldn't be found"
+            })
+        }
+
+        let bookedStartDate = booking.startDate.toDateString()
+        let bookedStartObj = new Date(bookedStartDate)
+        let bookedStartTime = bookedStartObj.getTime()
+
+        if(bookedStartTime <= Date.now()) {
+            res.status(403).json({
+                "message": "Bookings that have been started can't be deleted"
+              })
+        }
+
+
+        if (person.id !== booking.userId && person.id !== booking.Spot.ownerId) {
+            return res.status(403).json({
+                "message": "Forbidden"
+            })
+        }
+
+        await booking.destroy()
+
+
+        res.json({
+            "message": "Successfully deleted"
+          })
+
+
+
+
+    }
+
 
 
 )
