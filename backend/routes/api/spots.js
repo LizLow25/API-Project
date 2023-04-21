@@ -3,7 +3,7 @@ const express = require('express')
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require('../../db/models');
 
 const { requireAuth, restoreUser } = require('../../utils/auth')
-
+const { Op } = require("sequelize");
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation')
@@ -62,10 +62,140 @@ const router = express.Router();
 
 router.get('/',
     async (req, res) => {
+        let errors = {};
+
+
+
+
+        let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+        let pagination = {}
+        let where = {};
+
+
+
+
+        if (!page) page = 1
+        if (!size) size = 20
+
+        if (page >= 1 && size >= 1 && size <= 20 && page <= 10) {
+            pagination.limit = size;
+            pagination.offset = size * (page - 1);
+        }
+
+        if (page <= 0) {
+            errors.page = "Page must be greater than or equal to 1"
+
+        }
+
+        if (page > 10) {
+            errors.page = "Page must be less than or equal to 10"
+
+        }
+
+        if (size <= 0) {
+
+            errors.page = "Size must be greater than or equal to 1"
+
+
+        }
+
+        if (size > 20) {
+
+            errors.page = "Size must be less than or equal to 20"
+
+        }
+
+
+
+
+        //check latitude
+        if (minLat && !maxLat) {
+            if (minLat >= -90 && minLat <= 90) {
+                where.lat = { [Op.gte]: minLat }
+            } else {
+                errors.minLat = "Minimum latitude is invalid"
+            }
+        };
+        if (maxLat && !minLat) {
+            if (maxLat >= -90 && maxLat <= 90) {
+                where.lat = { [Op.lte]: maxLat }
+            } else {
+                errors.maxLat = "Maximum latitude is invalid"
+            }
+        };
+        if (maxLat && minLat) {
+            if ((minLat >= -90 && minLat <= 90) && (maxLat >= -90 && maxLat <= 90)) {
+                where.lat = { [Op.between]: [minLat, maxLat] }
+            } else {
+                errors.minLat = "Minimum latitude is invalid";
+                errors.maxLat = "Maximum latitude is invalid"
+            }
+        };
+
+        //check longitude
+        if (minLng && !maxLng) {
+            if (minLng >= -180 && minLng <= 180) {
+                where.lng = { [Op.gte]: minLng }
+            } else {
+                errors.minLng = "Minimum longitude is invalid"
+            }
+        };
+        if (maxLng && !minLng) {
+            if (maxLng >= -180 && maxLng <= 180) {
+                where.lng = { [Op.lte]: maxLng }
+            } else {
+                errors.maxLng = "Maximum longitude is invalid"
+            }
+        };
+        if (maxLng && minLng) {
+            if ((minLng >= -180 && minLng <= 180) && (maxLng >= -180 && maxLng <= 180)) {
+                where.lng = { [Op.between]: [minLng, maxLng] }
+            } else {
+                errors.minLng = "Minimum longitude is invalid";
+                errors.maxLng = "Maximum longitude is invalid"
+            }
+        }
+
+        //check price
+        if (minPrice && !maxPrice) {
+            if (minPrice >= 0) {
+            where.price = { [Op.gte]: minPrice }
+            } else {
+                errors.minPrice = "Minimum price must be greater than or equal to 0"
+            }
+        };
+        if (maxPrice && !minPrice) {
+            if (maxPrice >= 0) {
+            where.price = { [Op.lte]: maxPrice }
+            } else {
+                errors.maxPrice = "Maximum price must be greater than or equal to 0"
+            }
+        };
+        if (maxPrice && minPrice) {
+            if (minPrice >= 0 && maxPrice >= 0) {
+            where.price = { [Op.between]: [minPrice, maxPrice] }
+            } else {
+                errors.maxPrice = "Maximum price must be greater than or equal to 0"
+                errors.minPrice = "Minimum price must be greater than or equal to 0"
+            }
+        }
+
+
+
+
+
+
+
+        if (Object.keys(errors).length) {
+            return res.status(400).json({ "message": "Bad Request", "errors": errors })
+        }
+
+
 
         let spotList = []
 
         const spots = await Spot.findAll({
+            where,
             include: [
                 {
                     model: Review
@@ -73,7 +203,9 @@ router.get('/',
                 {
                     model: SpotImage
                 }
-            ]
+            ],
+            ...pagination,
+
         })
 
         spots.forEach(spot => {
@@ -106,10 +238,11 @@ router.get('/',
 
 
 
+        page = parseInt(page);
+        size = parseInt(size);
 
 
-        res.json(spotList)
-
+        res.json({ "Spots": spotList, page, size })
 
     }
 )

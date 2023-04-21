@@ -38,11 +38,11 @@ module.exports = {
         city: 'Denver',
         state: 'CO',
         country: 'USA',
-        lat: 39.7392,
+        lat: 29.7392,
         lng: 104.9903,
         name: 'The Mousewatching House',
         description: 'A good place to see some more local fauna.',
-        price: 300.99
+        price: 400.99
       },
       {
         ownerId: 1,
@@ -50,11 +50,11 @@ module.exports = {
         city: 'Denver',
         state: 'CO',
         country: 'USA',
-        lat: 39.7392,
+        lat: 19.7392,
         lng: 104.9903,
         name: 'The Cricketwatching House',
         description: 'A good place to see some local insects.',
-        price: 300.99
+        price: 500.99
       }
     ], {})
 
