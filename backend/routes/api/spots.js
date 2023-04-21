@@ -560,7 +560,7 @@ router.get('/:spotId/reviews',
         })
 
 
-        res.json(reviewList)
+        res.json({"Reviews": reviewList})
 
 
     }
@@ -700,17 +700,20 @@ router.post('/:spotId/bookings',
         let person = user.toJSON();
         const spot = await Spot.findByPk(req.params.spotId)
 
-        if (person.id === spot.ownerId) {
-            return res.status(403).json({
-                "message": "Forbidden"
-            })
-        }
 
         if (!spot) {
             return res.status(404).json({
                 "message": "Spot couldn't be found"
             })
         };
+
+        if (person.id === spot.ownerId) {
+            return res.status(403).json({
+                "message": "Forbidden"
+            })
+        }
+
+
 
         let { startDate, endDate } = req.body
 
