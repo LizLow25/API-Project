@@ -226,6 +226,7 @@ router.get('/',
         })
 
         spotList.forEach(spot => {
+            spot.previewImage = null
 
             spot.SpotImages.forEach(image => {
                 spot.previewImage = image.url
