@@ -48,8 +48,8 @@ router.post(
             id: user.id,
             email: user.email,
             username: user.username,
-            firstname: user.firstName,
-            lastname: user.lastName
+            firstName: user.firstName,
+            lastName: user.lastName
         };
 
         await setTokenCookie(res, safeUser);
@@ -69,14 +69,14 @@ router.delete(
 );
 
 router.get(
-    '/', requireAuth,
+    '/',
     (req, res) => {
         const { user } = req;
         if (user) {
             const safeUser = {
                 id: user.id,
-                firstname: user.firstName,
-                lastname: user.lastName,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 email: user.email,
                 username: user.username,
             };
