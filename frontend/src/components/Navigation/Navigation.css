@@ -1,3 +1,36 @@
+
 .hidden {
     display:none
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 10px;
+    border-bottom: 1px solid rgb(128, 128, 128, 20%);
+}
+
+.navbutton {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    width: 90px;
+    padding: 10px;
+    border-radius: 30px;
+
+}
+
+.profile-dropdown {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.logo {
+    color:  #FF385C;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+
 }
