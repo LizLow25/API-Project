@@ -1,0 +1,16 @@
+.spotcards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-decoration: none;
+}
+
+.image {
+    width: 90%;
+    height: 200px;
+    overflow: hidden;
+
+}
+
+.spotlink {
+    text-decoration: none;
+}
