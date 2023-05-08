@@ -22,39 +22,39 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         ownerId: 1,
-        address: '123 Sparrow Lane',
-        city: 'Denver',
-        state: 'CO',
-        country: 'USA',
-        lat: 39.7392,
-        lng: 104.9903,
-        name: 'The Birdwatching House',
-        description: 'A good place to see the local fauna.',
-        price: 300.99
+        address: '50308 Pura Vida Lane',
+        city: 'Playa Flamingo',
+        state: 'Guanacaste',
+        country: 'Costa Rica',
+        lat: 10.4317,
+        lng: 85.7846,
+        name: 'Costa Rica Beachfront Van',
+        description: 'Experience pura vida on the shores of the Pacific ocean.',
+        price: 20.99
       },
       {
         ownerId: 1,
-        address: '123 Mouse Lane',
-        city: 'Denver',
-        state: 'CO',
+        address: '472 Snowshoe Lane',
+        city: 'Moose',
+        state: 'WY',
         country: 'USA',
-        lat: 29.7392,
-        lng: 104.9903,
-        name: 'The Mousewatching House',
-        description: 'A good place to see some more local fauna.',
-        price: 400.99
+        lat: 43.6558,
+        lng: 110.7183,
+        name: 'Vanlife in the Grand Tetons',
+        description: 'Rent your mobile dreamhome and go offroad in the wilds of Wyoming.',
+        price: 70.99
       },
       {
-        ownerId: 1,
-        address: '123 Cricket Lane',
-        city: 'Denver',
-        state: 'CO',
+        ownerId: 2,
+        address: '275 Marionberry Lane',
+        city: 'Forks',
+        state: 'WA',
         country: 'USA',
-        lat: 19.7392,
-        lng: 104.9903,
-        name: 'The Cricketwatching House',
-        description: 'A good place to see some local insects.',
-        price: 500.99
+        lat: 47.9504,
+        lng: 124.3855,
+        name: "Vanlife on Washington's Olympic Peninsula",
+        description: 'Explore the mysteries and wonder of a temperate rainforest.',
+        price: 40.99
       }
     ], {})
 
