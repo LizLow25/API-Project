@@ -17,11 +17,11 @@ const SpotDetails = () => {
         <div>
             <h2>{spotData.name}</h2>
             <h3>{`${spotData.city}, ${spotData.state}, ${spotData.country}`}</h3>
-            <p>{`Hosted by ${spotData.Owner.firstName} ${spotData.Owner.lastName}`}</p>
+            <p>{`Hosted by ${spotData.Owner?.firstName} ${spotData.Owner?.lastName}`}</p>
             <div>
             <p>{spotData.description}</p>
             <div>
-                
+
             </div>
 
             </div>
