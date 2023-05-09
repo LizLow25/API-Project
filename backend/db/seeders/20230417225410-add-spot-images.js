@@ -98,13 +98,13 @@ module.exports = {
       },
       {
         spotId: 4,
-        url: 'https://a0.muscache.com/im/pictures/396aa09f-1d52-434c-83dc-7a5390dd5633.jpg?im_w=1200',
-        preview: true,
+        url: 'https://a0.muscache.com/im/pictures/1e292c98-0a71-4323-abbf-972397812c29.jpg?im_w=1200',
+        preview: false,
       },
       {
         spotId: 4,
-        url: 'https://a0.muscache.com/im/pictures/1e292c98-0a71-4323-abbf-972397812c29.jpg?im_w=1200',
-        preview: false,
+        url: 'https://a0.muscache.com/im/pictures/396aa09f-1d52-434c-83dc-7a5390dd5633.jpg?im_w=1200',
+        preview: true,
       },
       {
         spotId: 4,

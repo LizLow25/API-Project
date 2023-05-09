@@ -229,7 +229,9 @@ router.get('/',
             spot.previewImage = null
 
             spot.SpotImages.forEach(image => {
+                if (image.preview) {
                 spot.previewImage = image.url
+                }
             })
 
             delete spot.SpotImages
