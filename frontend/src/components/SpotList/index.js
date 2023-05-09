@@ -7,8 +7,10 @@ import "./SpotList.css"
 
 const SpotList = () => {
     const dispatch = useDispatch();
-    const spotsData = useSelector(state => state.spots);
+    const spotsData = useSelector(state => state.spots.allSpots);
+    console.log(spotsData)
     const spots = Object.values(spotsData);
+    console.log(spots)
 
     useEffect(() => {
         dispatch(fetchSpots())
