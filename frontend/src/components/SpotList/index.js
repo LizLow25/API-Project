@@ -8,9 +8,8 @@ import "./SpotList.css"
 const SpotList = () => {
     const dispatch = useDispatch();
     const spotsData = useSelector(state => state.spots.allSpots);
-    console.log(spotsData)
     const spots = Object.values(spotsData);
-    console.log(spots)
+
 
     useEffect(() => {
         dispatch(fetchSpots())
@@ -20,10 +19,10 @@ const SpotList = () => {
         <div>
             <ul className='spotcards'>
                 {spots.map((spot) => (
-                    <Link to={`/spots/${spot.id}`} className='spotlink'>
+                    <Link to={`/spots/${spot.id}`} className='spotlink' key={spot.id}
+                    >
                         <SpotCard
                             spot={spot}
-                            key={spot.id}
                         />
                     </Link>
                 ))}

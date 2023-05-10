@@ -1,7 +1,8 @@
-import './SpotCard.css'
+const ManageSpotCard = ({ spot }) => {
 
-const SpotCard = ({ spot }) => {
     return (
+
+
         <li className="spotcard">
             <div>
                 <img className='image' src={spot.previewImage} alt='' />
@@ -10,17 +11,15 @@ const SpotCard = ({ spot }) => {
                     <p><i className="fa-solid fa-star"></i>{spot.avgRating}</p>
                 </div>
                 <p className='textcontainer'>{`$${spot.price} night`}</p>
+                <div>
+                    <button>Update</button>
+                    <button>Delete</button>
+                </div>
 
             </div>
 
         </li>
-
-
-
     )
-
-
-
 }
 
-export default SpotCard;
+export default ManageSpotCard

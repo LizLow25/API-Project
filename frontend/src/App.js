@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import SpotList from "./components/SpotList";
 import SpotDetails from "./components/SpotDetails";
 import SpotForm from "./components/SpotForm";
+import ManageSpots from "./components/ManageSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,8 +20,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
         <Route exact path="/" component={SpotList} />
-        <Route exact path="/spots/:spotId" component={SpotDetails} />
         <Route exact path="/spots" component={SpotForm} />
+        <Route exact path="/spots/current" component={ManageSpots} />
+        <Route exact path="/spots/:spotId" component={SpotDetails} />
         </Switch>}
     </>
   );
