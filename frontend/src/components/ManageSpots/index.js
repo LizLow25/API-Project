@@ -15,8 +15,7 @@ const ManageSpots = () => {
 
     useEffect(() => {
         dispatch(getSpotsByOwner())
-    }, [dispatch, spotsData])
-
+    }, [dispatch])
 
 
     return (
@@ -32,10 +31,10 @@ const ManageSpots = () => {
                                 />
                             </Link>
 
-                            <button>Update</button>
+                            <Link exact to={`/spots/${spot.id}/edit`}><button>Update</button></Link>
                             <button><OpenModalMenuItem
                                 itemText="Delete"
-                                modalComponent={<DeleteSpotModal  spot={spot}/>}
+                                modalComponent={<DeleteSpotModal spot={spot} />}
                             /></button>
                         </div>
                     ))}

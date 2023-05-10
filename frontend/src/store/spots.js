@@ -6,6 +6,7 @@ export const ADD_SPOT = 'spots/ADD_SPOT';
 export const ADD_IMAGE = 'spots/ADD_IMAGE';
 export const MANAGE_SPOTS = 'spots/MANAGE_SPOTS'
 export const DELETE_SPOT = 'spots/DELETE_SPOT'
+export const UPDATE_SPOT = 'spots/UPDATE_SPOT'
 
 export const loadSpots = (spots) => ({
     type: LOAD_SPOTS,
@@ -29,13 +30,18 @@ export const addImage = (image) => ({
 
 export const manageSpots = (spots) => ({
     type: MANAGE_SPOTS,
-   spots
+    spots
 })
 
 export const deleteSpot = (id) => ({
     type: DELETE_SPOT,
     id
 
+})
+
+export const updateSpot = (spot) => ({
+    type: UPDATE_SPOT,
+    spot
 })
 
 
@@ -47,8 +53,13 @@ export const fetchSpots = () => async dispatch => {
 
 export const loadSpotDetailsAction = (id) => async dispatch => {
     const response = await fetch(`/api/spots/${id}`);
-    const spot = await response.json();
-    dispatch(loadSpotDetails(spot))
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(loadSpotDetails(spot))
+
+        return spot
+    }
 
 }
 
@@ -60,11 +71,16 @@ export const addSpotAction = (spot) => async dispatch => {
 
         });
         if (response.ok) {
+            //route works
             const spot = await response.json();
             dispatch(addSpot(spot))
             return spot
+        } else {
+            //route error
+            return response.json()
         }
     } catch (e) {
+        //validation errors
         let response = await e.json()
         return response
     }
@@ -92,7 +108,7 @@ export const getSpotsByOwner = () => async dispatch => {
         dispatch(manageSpots(spots))
         return spots
     } else {
-       return false
+        return false
     }
 }
 
@@ -110,6 +126,19 @@ export const deleteSpotAction = (id) => async dispatch => {
 
 }
 
+export const updateSpotAction = (spot, id) => async dispatch => {
+
+    const response = await csrfFetch(`/api/spots/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(spot)
+    })
+    if (response.ok) {
+        const updatedSpot = await response.json();
+        dispatch(updateSpot(updatedSpot))
+    }
+
+}
+
 
 
 
@@ -118,7 +147,7 @@ export const deleteSpotAction = (id) => async dispatch => {
 const initialState = { allSpots: {}, singleSpot: {} }
 
 const spotsReducer = (state = initialState, action) => {
-    const spotsState = { ...state, allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot } };
+    const spotsState = { ...state, allSpots: { ...state.allSpots }, singleSpot: {} };
     switch (action.type) {
         case LOAD_SPOTS:
             spotsState.allSpots = {}
@@ -136,9 +165,13 @@ const spotsReducer = (state = initialState, action) => {
             spotsState.singleSpot.SpotImages.push(action.image);
             return spotsState;
         case MANAGE_SPOTS:
-            return {...state, allSpots: {...action.spots}}
+            return { ...state, allSpots: { ...action.spots } }
         case DELETE_SPOT:
             delete spotsState.allSpots[action.id]
+            return spotsState;
+        case UPDATE_SPOT:
+            spotsState.allSpots[action.spot.id] = action.spot;
+            spotsState.singleSpot = action.spot;
             return spotsState
         default:
             return state;
