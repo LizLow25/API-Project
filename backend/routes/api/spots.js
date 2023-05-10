@@ -159,21 +159,21 @@ router.get('/',
         //check price
         if (minPrice && !maxPrice) {
             if (minPrice >= 0) {
-            where.price = { [Op.gte]: minPrice }
+                where.price = { [Op.gte]: minPrice }
             } else {
                 errors.minPrice = "Minimum price must be greater than or equal to 0"
             }
         };
         if (maxPrice && !minPrice) {
             if (maxPrice >= 0) {
-            where.price = { [Op.lte]: maxPrice }
+                where.price = { [Op.lte]: maxPrice }
             } else {
                 errors.maxPrice = "Maximum price must be greater than or equal to 0"
             }
         };
         if (maxPrice && minPrice) {
             if (minPrice >= 0 && maxPrice >= 0) {
-            where.price = { [Op.between]: [minPrice, maxPrice] }
+                where.price = { [Op.between]: [minPrice, maxPrice] }
             } else {
                 errors.maxPrice = "Maximum price must be greater than or equal to 0"
                 errors.minPrice = "Minimum price must be greater than or equal to 0"
@@ -230,7 +230,7 @@ router.get('/',
 
             spot.SpotImages.forEach(image => {
                 if (image.preview) {
-                spot.previewImage = image.url
+                    spot.previewImage = image.url
                 }
             })
 
@@ -295,7 +295,9 @@ router.get('/current',
         spotList.forEach(spot => {
 
             spot.SpotImages.forEach(image => {
-                spot.previewImage = image.url
+                if (image.preview) {
+                    spot.previewImage = image.url
+                }
             })
 
             delete spot.SpotImages
@@ -563,7 +565,7 @@ router.get('/:spotId/reviews',
         })
 
 
-        res.json({"Reviews": reviewList})
+        res.json({ "Reviews": reviewList })
 
 
     }
