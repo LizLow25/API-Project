@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom'
 import { addSpotAction } from "../../store/spots";
 import { addSpotImageAction } from "../../store/spots";
 import './SpotForm.css'
 
 const SpotForm = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     //form input slices of state
     const [country, setCountry] = useState("");
@@ -27,12 +29,11 @@ const SpotForm = () => {
     const [url5, setUrl5] = useState('');
 
     //error handling slices of state
-    const [errors, setErrors] = useState({});
+    // const [errors, setErrors] = useState({});
     const [frontErrors, setFrontErrors] = useState({});
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrors({});
         setFrontErrors({});
         let frontE = {}
 
@@ -55,53 +56,86 @@ const SpotForm = () => {
             price
         }
 
-        let response = await dispatch(addSpotAction(newSpot));
+        //front-end error handling
+        if (!country.length) frontE.country = "Country is required";
+        if (!address.length) frontE.address = "Address is required";
+        if (!city.length) frontE.city = "City is required";
+        if (!state.length) frontE.state = "State is required";
+        if (!latitude.length) frontE.latitude = "Latitude is required";
+        if (!longitude.length) frontE.longitude = "Longitude is required";
+        if (!name.length) frontE.name = "Name is required";
+        if (description.length < 30) frontE.description = "Description needs a minimum of 30 characters";
+        if (!price.length) frontE.price = "Price is required";
+        if (!previewImage) frontE.previewImage = "Preview image is required"
+        if (!(previewImage.endsWith('.jpg') || previewImage.endsWith('.png') || previewImage.endsWith('.jpeg')) && previewImage) frontE.previewImage = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(url2.endsWith('.jpg') || url2.endsWith('.png') || url2.endsWith('.jpeg')) && url2) frontE.url2 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(url3.endsWith('.jpg') || url3.endsWith('.png') || url3.endsWith('.jpeg')) && url3) frontE.url3 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(url4.endsWith('.jpg') || url4.endsWith('.png') || url4.endsWith('.jpeg')) && url4) frontE.url4 = "Image URL must end in .png, .jpg, or .jpeg"
+        if (!(url5.endsWith('.jpg') || url5.endsWith('.png') || url5.endsWith('.jpeg')) && url5) frontE.url5 = "Image URL must end in .png, .jpg, or .jpeg"
 
-        //pull validation errors from the backend
-        if (response.errors) {
-            setErrors(response.errors)
-        }
-
-        //add frontend form errors
-        if (!name.length) {
-            frontE.name = "Name is required"
-        }
-
-        if (description.length < 30) {
-            frontE.description = "Description needs a minimum of 30 characters"
-        }
-        if (!previewImage) {
-            frontE.previewImage = "Preview image is required"
-        }
 
         setFrontErrors(frontE)
 
-//
+        if (Object.values(frontErrors).length) {
+            console.log('outtahere')
+            return null
+        }
+
+
+
+        let response = await dispatch(addSpotAction(newSpot));
+
+        //pull validation errors from the backend
+        //  if (response.errors) {
+        //      setErrors(response.errors)
+        //  }
+
 
         //if the new spot is created, its time to upload the images!
 
         if (response.id) {
 
-            await dispatch(addSpotImageAction({url: previewImage, preview: true}, response.id))
+            await dispatch(addSpotImageAction({ url: previewImage, preview: true }, response.id))
 
             spotImages.forEach(async (image) => {
-                await dispatch(addSpotImageAction({url: image, preview: false}, response.id))
+                await dispatch(addSpotImageAction({ url: image, preview: false }, response.id))
             })
 
+            //now, reset the form
+            setCountry("");
+            setAddress("");
+            setCity("");
+            setState("");
+            setLatitude("");
+            setLongitude("");
+            setDescription("");
+            setName("");
+            setPrice("");
 
+            setPreviewImage('');
+            setUrl2('');
+            setUrl3('');
+            setUrl4('');
+            setUrl5('');
+
+            setFrontErrors({});
+
+            //and navigate to your new spot!
+            history.push(`/spots/${response.id}`);
+
+            //omg that was so much work! ahh!
         }
 
-
-
-
     }
+
+
     return (
         <div className="inputBox">
             <h1>Create a New Spot</h1>
             <h2>Where's your place located?</h2>
             <p>Guests will only get your exact address once they booked a reservation.</p>
             <form onSubmit={handleSubmit}>
-                <div className="errors">{errors.country}</div>
+                <div className="errors">{frontErrors.country}</div>
                 <label>Country</label>
                 <input
                     type="text"
@@ -110,7 +144,7 @@ const SpotForm = () => {
                     placeholder="Country"
                     name="country"
                 />
-                <div className="errors">{errors.address}</div>
+                <div className="errors">{frontErrors.address}</div>
                 <label>Street Address</label>
                 <input
                     type="text"
@@ -119,7 +153,7 @@ const SpotForm = () => {
                     placeholder="Address"
                     name="address"
                 />
-                <div className="errors">{errors.city}</div>
+                <div className="errors">{frontErrors.city}</div>
                 <label>City</label>
                 <input
                     type="text"
@@ -128,7 +162,7 @@ const SpotForm = () => {
                     placeholder="City"
                     name="city"
                 />
-                <div className="errors">{errors.state}</div>
+                <div className="errors">{frontErrors.state}</div>
                 <label>State</label>
                 <input
                     type="text"
@@ -137,7 +171,7 @@ const SpotForm = () => {
                     placeholder="State"
                     name="state"
                 />
-                <div className="errors">{errors.lat}</div>
+                <div className="errors">{frontErrors.latitude}</div>
                 <label>Latitude</label>
                 <input
                     type="text"
@@ -146,7 +180,7 @@ const SpotForm = () => {
                     placeholder="Latitude"
                     name="latitude"
                 />
-                <div className="errors">{errors.lng}</div>
+                <div className="errors">{frontErrors.longitude}</div>
                 <label>Longitude</label>
                 <input
                     type="text"
@@ -184,7 +218,7 @@ const SpotForm = () => {
                     placeholder="Price per night (USD)"
                     name="price"
                 />
-                <div className="errors">{errors.price}</div>
+                <div className="errors">{frontErrors.price}</div>
                 <h2>Liven up your spot with photos</h2>
                 <p>Submit a link to at least one photo to publish your spot.</p>
                 <input
@@ -202,6 +236,7 @@ const SpotForm = () => {
                     placeholder="Image URL"
 
                 />
+                <div className="errors">{frontErrors.url2}</div>
                 <input
                     type="text"
                     onChange={(e) => setUrl3(e.target.value)}
@@ -209,6 +244,8 @@ const SpotForm = () => {
                     placeholder="Image URL"
 
                 />
+                <div className="errors">{frontErrors.url3}</div>
+
                 <input
                     type="text"
                     onChange={(e) => setUrl4(e.target.value)}
@@ -216,6 +253,8 @@ const SpotForm = () => {
                     placeholder="Image URL"
 
                 />
+                <div className="errors">{frontErrors.url4}</div>
+
                 <input
                     type="text"
                     onChange={(e) => setUrl5(e.target.value)}
@@ -223,6 +262,8 @@ const SpotForm = () => {
                     placeholder="Image URL"
 
                 />
+                <div className="errors">{frontErrors.url5}</div>
+
                 <button type="submit">Create Spot</button>
             </form>
         </div>
