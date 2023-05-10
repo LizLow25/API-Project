@@ -13,7 +13,7 @@ const SpotList = () => {
 
     useEffect(() => {
         dispatch(fetchSpots())
-    }, [dispatch])
+    }, [dispatch], spotsData)
 
     return (
         <div>

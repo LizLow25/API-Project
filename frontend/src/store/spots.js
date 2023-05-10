@@ -5,6 +5,7 @@ export const LOAD_SPOT_DETAILS = 'spots/LOAD_SPOT_DETAILS'
 export const ADD_SPOT = 'spots/ADD_SPOT';
 export const ADD_IMAGE = 'spots/ADD_IMAGE';
 export const MANAGE_SPOTS = 'spots/MANAGE_SPOTS'
+export const DELETE_SPOT = 'spots/DELETE_SPOT'
 
 export const loadSpots = (spots) => ({
     type: LOAD_SPOTS,
@@ -29,6 +30,12 @@ export const addImage = (image) => ({
 export const manageSpots = (spots) => ({
     type: MANAGE_SPOTS,
    spots
+})
+
+export const deleteSpot = (id) => ({
+    type: DELETE_SPOT,
+    id
+
 })
 
 
@@ -78,17 +85,29 @@ export const addSpotImageAction = (image, id) => async dispatch => {
 }
 
 export const getSpotsByOwner = () => async dispatch => {
-    console.log('stepone')
     const response = await csrfFetch('/api/spots/current')
 
     if (response.ok) {
-        console.log('steptwo')
         const spots = await response.json();
         dispatch(manageSpots(spots))
         return spots
     } else {
-        console.log('didntwork')
+       return false
     }
+}
+
+export const deleteSpotAction = (id) => async dispatch => {
+
+    const response = await csrfFetch(`/api/spots/${id}`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        dispatch(deleteSpot(id))
+    }
+
+
+
 }
 
 
@@ -118,6 +137,9 @@ const spotsReducer = (state = initialState, action) => {
             return spotsState;
         case MANAGE_SPOTS:
             return {...state, allSpots: {...action.spots}}
+        case DELETE_SPOT:
+            delete spotsState.allSpots[action.id]
+            return spotsState
         default:
             return state;
     }
