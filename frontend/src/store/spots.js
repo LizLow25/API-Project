@@ -165,7 +165,12 @@ const spotsReducer = (state = initialState, action) => {
             spotsState.singleSpot.SpotImages.push(action.image);
             return spotsState;
         case MANAGE_SPOTS:
-            return { ...state, allSpots: { ...action.spots } }
+            spotsState.allSpots = {}
+            console.log("spots", action.spots)
+            action.spots.forEach((spot) => {
+                spotsState.allSpots[spot.id] = spot;
+            });
+            return spotsState;
         case DELETE_SPOT:
             delete spotsState.allSpots[action.id]
             return spotsState;

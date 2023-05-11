@@ -11,6 +11,7 @@ import DeleteSpotModal from '../DeleteSpotModal';
 const ManageSpots = () => {
     const dispatch = useDispatch();
     const spotsData = useSelector(state => state.spots.allSpots);
+    
     const spots = Object.values(spotsData);
 
     useEffect(() => {
