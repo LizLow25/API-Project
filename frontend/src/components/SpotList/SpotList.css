@@ -1,11 +1,11 @@
 .spotcards {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    flex-flow: row wrap;
     text-decoration: none;
 }
 
 .image {
-    width: 80%;
+    width: 90%;
     height: 175px;
     overflow: hidden;
 

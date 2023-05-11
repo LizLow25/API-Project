@@ -1,23 +1,30 @@
 
 .imagecontainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    gap: 10px;
 
 
 }
 
 .picturegrid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    width: 200px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 50%
 
 }
 
 
+
+
 .leadpicture {
+    object-fit: contain;
+    width: 50%
 
 
+}
 
-
+.innerpicture {
+    object-fit: cover;
+    width: 40%
 }
