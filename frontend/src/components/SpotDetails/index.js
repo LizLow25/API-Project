@@ -78,11 +78,14 @@ const SpotDetails = () => {
                 {reviewData.length ? reviewData.map((review) => (
                     <li key={review.id}>
                         <h3>{review.User?.firstName}</h3>
-                        <p>{review.createdAt}</p>
+                        <p>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
+                            year: "numeric",
+                            month: "long"
+                        }): ''}</p>
                         <p>{review.review}</p>
                         {user && user?.id === review.User?.id ? <button><OpenModalMenuItem
                             itemText="Delete"
-                            modalComponent={<DeleteReviewModal id={review.id} spotId={spotId}/>}
+                            modalComponent={<DeleteReviewModal id={review.id} spotId={spotId} />}
                         /></button> : ''}
 
                     </li>
