@@ -79,9 +79,10 @@ const SpotForm = () => {
 
         setFrontErrors(frontE)
 
-        if (Object.values(frontErrors).length) {
-            console.log('outtahere')
-            return null
+        if (Object.values(frontE).length) {
+            console.log('inside conditional for errors')
+        
+            return
         }
 
 
@@ -127,11 +128,11 @@ const SpotForm = () => {
             setFrontErrors({});
 
             //and navigate to your new spot!
-
+            return history.push(`/spots/${response.id}`);
             //omg that was so much work! ahh!
         }
 
-         history.push(`/spots/${response.id}`);
+
 
 
     }

@@ -18,6 +18,13 @@ const SpotDetails = () => {
     console.log("reviewData", reviewData)
 
 
+    //make a shallow copy of the review data and then call array.reverse() to switch the order of the reviews
+    let shallowReview = [...reviewData]
+
+    shallowReview.reverse();
+
+
+
     let priorReviewUsers = [];
     reviewData.forEach(review => {
         priorReviewUsers.push(review.userId)
@@ -75,7 +82,7 @@ const SpotDetails = () => {
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
             <ul>
-                {reviewData.length ? reviewData.map((review) => (
+                {shallowReview.length ? shallowReview.map((review) => (
                     <li key={review.id}>
                         <h3>{review.User?.firstName}</h3>
                         <p>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {

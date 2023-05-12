@@ -11,18 +11,22 @@ import DeleteSpotModal from '../DeleteSpotModal';
 const ManageSpots = () => {
     const dispatch = useDispatch();
     const spotsData = useSelector(state => state.spots.allSpots);
-    
+    const user = useSelector(state => state.session.user)
+
     const spots = Object.values(spotsData);
 
     useEffect(() => {
         dispatch(getSpotsByOwner())
     }, [dispatch])
 
+    console.log(spots.length)
+
 
     return (
         <>
             <h2>Manage Spots</h2>
             <div>
+                {user && !spots.length ? <Link to='/spots/new'><button>Create New Spot</button></Link> : ''}
                 <ul className='spotcards'>
                     {spots?.map((spot) => (
                         <div key={spot.id}>
