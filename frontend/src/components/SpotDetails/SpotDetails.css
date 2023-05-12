@@ -1,0 +1,30 @@
+
+.imagecontainer {
+    display: flex;
+    gap: 10px;
+
+
+}
+
+.picturegrid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 50%
+
+}
+
+
+
+
+.leadpicture {
+    object-fit: contain;
+    width: 50%
+
+
+}
+
+.innerpicture {
+    object-fit: cover;
+    width: 40%
+}

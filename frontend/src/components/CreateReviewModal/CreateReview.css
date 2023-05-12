@@ -1,0 +1,20 @@
+.reviewmodal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    padding: 0, 20px;
+    padding-bottom: 20px;
+}
+.rating-input .filled {
+    color: black;
+  }
+
+  .rating-input .empty {
+    color: grey;
+  }
+
+  .rating-input {
+    display: flex;
+  }

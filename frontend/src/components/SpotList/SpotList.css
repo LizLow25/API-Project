@@ -1,0 +1,16 @@
+.spotcards {
+    display: flex;
+    flex-flow: row wrap;
+    text-decoration: none;
+}
+
+.image {
+    width: 90%;
+    height: 175px;
+    overflow: hidden;
+
+}
+
+.spotlink {
+    text-decoration: none;
+}

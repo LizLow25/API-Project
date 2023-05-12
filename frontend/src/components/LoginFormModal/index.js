@@ -24,6 +24,8 @@ function LoginFormModal() {
             });
     };
 
+
+
     return (
         < div className='loginmodal'>
             <h1>Log In</h1>
@@ -52,7 +54,16 @@ function LoginFormModal() {
                     <p className="loginerrors">{errors.credential}</p>
                 )}
                 <button className='loginbutton' type="submit">Log In</button>
+                <button
+                onClick={() => {
+                    setCredential("TurtlyTeensk")
+                    setPassword("password")
+                }}
+                type="submit"
+                >Log In as Demo User</button>
             </form>
+
+
         </div>
     );
 }

@@ -24,20 +24,32 @@ module.exports = {
       {
         spotId: 1,
         userId: 2,
-        review: 'Sparrows are delicious.',
+        review: 'I wish to never leave the beautiful mountains of Costa Rica.',
         stars: 5,
       },
       {
+        spotId: 1,
+        userId: 3,
+        review: 'The birdwatching is impeccable.',
+        stars: 4,
+      },
+      {
         spotId: 2,
-        userId: 2,
-        review: 'Mice are delicious.',
-        stars: 5,
+        userId: 3,
+        review: 'Comfortable bed but a strang musty smell. Not a fan.',
+        stars: 2,
       },
       {
         spotId: 3,
         userId: 3,
-        review: 'Crickets are ok.',
+        review: 'I love the smell of woodsmoke and I also love to read by the fire. This spot was perfect!',
         stars: 4,
+      },
+      {
+        spotId: 3,
+        userId: 1,
+        review: 'There were too many spiders.',
+        stars: 1,
       }
     ], {})
 
