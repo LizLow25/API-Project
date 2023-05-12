@@ -47,7 +47,7 @@ function CreateReviewModal({ spotId }) {
         await dispatch(loadSpotReviewsAction(spotId))
         await dispatch(loadSpotDetailsAction(spotId))
 
-        closeModal()
+       return closeModal()
 
 
 

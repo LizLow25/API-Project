@@ -6,6 +6,7 @@ import './SpotDetails.css'
 import { loadSpotReviewsAction } from '../../store/reviews';
 import CreateReviewModal from '../CreateReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import DeleteReviewModal from '../DeleteReviewModal';
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const SpotDetails = () => {
     console.log("reviewData", reviewData)
 
 
-    let priorReviewUsers =[];
+    let priorReviewUsers = [];
     reviewData.forEach(review => {
         priorReviewUsers.push(review.userId)
 
@@ -55,7 +56,7 @@ const SpotDetails = () => {
                 <div className='informationBox'>
                     <div>
                         <p>{`$${spotData.price} night`}</p>
-                        <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{` - ${spotData.numReviews} reviews`}</p>
+                        <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` - ${spotData.numReviews} Review` : ` - ${spotData.numReviews} Reviews` : ''}</p>
                         <button>Reserve</button>
                     </div>
                 </div>
@@ -63,13 +64,13 @@ const SpotDetails = () => {
             </div>
 
             <div>
-                <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{` - ${spotData.numReviews} reviews`}</p>
+                <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` - ${spotData.numReviews} Review` : ` - ${spotData.numReviews} Reviews` : ''}</p>
             </div>
             {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button><OpenModalMenuItem
                 itemText="Be the First to Post a Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
-            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0? <button><OpenModalMenuItem
+            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button><OpenModalMenuItem
                 itemText="Post Your Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
@@ -79,10 +80,13 @@ const SpotDetails = () => {
                         <h3>{review.User?.firstName}</h3>
                         <p>{review.createdAt}</p>
                         <p>{review.review}</p>
-
+                        {user && user?.id === review.User?.id ? <button><OpenModalMenuItem
+                            itemText="Delete"
+                            modalComponent={<DeleteReviewModal id={review.id} spotId={spotId}/>}
+                        /></button> : ''}
 
                     </li>
-                )): ''}
+                )) : ''}
 
             </ul>
 
