@@ -100,9 +100,12 @@ const SpotForm = () => {
 
             await dispatch(addSpotImageAction({ url: previewImage, preview: true }, response.id))
 
-            spotImages.forEach(async (image) => {
-                await dispatch(addSpotImageAction({ url: image, preview: false }, response.id))
-            })
+            if (spotImages.length) {
+
+                spotImages.forEach(async (image) => {
+                    await dispatch(addSpotImageAction({ url: image, preview: false }, response.id))
+                })
+            }
 
             //now, reset the form
             setCountry("");
@@ -124,10 +127,12 @@ const SpotForm = () => {
             setFrontErrors({});
 
             //and navigate to your new spot!
-            history.push(`/spots/${response.id}`);
 
             //omg that was so much work! ahh!
         }
+
+         history.push(`/spots/${response.id}`);
+
 
     }
 

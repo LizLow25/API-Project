@@ -162,6 +162,7 @@ const spotsReducer = (state = initialState, action) => {
             spotsState.allSpots[action.spot.id] = action.spot
             return spotsState
         case ADD_IMAGE:
+            spotsState.singleSpot.SpotImages = [];
             spotsState.singleSpot.SpotImages.push(action.image);
             return spotsState;
         case MANAGE_SPOTS:
