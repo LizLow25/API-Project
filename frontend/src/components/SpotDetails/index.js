@@ -12,10 +12,18 @@ const SpotDetails = () => {
     const { spotId } = useParams();
     const spotData = useSelector(state => state.spots.singleSpot)
     const reviews = useSelector(state => state.reviews.spot)
-    const user = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
     const reviewData = Object.values(reviews)
+    console.log("reviewData", reviewData)
+
+
+    let priorReviewUsers =[];
+    reviewData.forEach(review => {
+        priorReviewUsers.push(review.userId)
+
+    })
     console.log('spotData', spotData)
-    console.log('userid', user)
+    console.log('reviewspeope', priorReviewUsers)
 
     useEffect(() => {
         dispatch(loadSpotDetailsAction(spotId))
@@ -23,6 +31,7 @@ const SpotDetails = () => {
     }, [dispatch, spotId])
 
     if (!spotData.SpotImages) return null
+
 
     return (
         <div>
@@ -56,20 +65,24 @@ const SpotDetails = () => {
             <div>
                 <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{` - ${spotData.numReviews} reviews`}</p>
             </div>
-            {spotData.numReviews === 0 && user != spotData.ownerId ? <button><OpenModalMenuItem
-                                itemText="Be the First to Post a Review!"
-                                modalComponent={<CreateReviewModal spot={spotData} />}
-                            /></button>: ''}
+            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button><OpenModalMenuItem
+                itemText="Be the First to Post a Review!"
+                modalComponent={<CreateReviewModal spotId={spotId} />}
+            /></button> : ''}
+            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0? <button><OpenModalMenuItem
+                itemText="Post Your Review!"
+                modalComponent={<CreateReviewModal spotId={spotId} />}
+            /></button> : ''}
             <ul>
-            {reviewData.map((review) => (
+                {reviewData.length ? reviewData.map((review) => (
                     <li key={review.id}>
-                        <h3>{review.User.firstName}</h3>
+                        <h3>{review.User?.firstName}</h3>
                         <p>{review.createdAt}</p>
                         <p>{review.review}</p>
 
 
                     </li>
-                ))}
+                )): ''}
 
             </ul>
 
