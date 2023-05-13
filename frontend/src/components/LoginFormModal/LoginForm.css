@@ -35,6 +35,13 @@
 
 }
 
+.loginbutton:disabled {
+    background-color: white;
+    color: grey;
+    border: grey solid 2px;
+    box-shadow: 1px 5px 5px grey;
+}
+
 .loginerrors {
     color: #FF385C;
 }
