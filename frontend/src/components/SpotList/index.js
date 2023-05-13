@@ -16,7 +16,7 @@ const SpotList = () => {
     }, [dispatch], spotsData)
 
     return (
-        <div>
+        <div className='landingpage'>
             <ul className='spotcards'>
                 {spots.map((spot) => (
                     <Link to={`/spots/${spot.id}`} className='spotlink' key={spot.id}

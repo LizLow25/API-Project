@@ -2,14 +2,10 @@
     display: flex;
     flex-flow: row wrap;
     text-decoration: none;
-}
-
-.image {
-    width: 90%;
-    height: 175px;
-    overflow: hidden;
+    justify-content: center;
 
 }
+
 
 .spotlink {
     text-decoration: none;
