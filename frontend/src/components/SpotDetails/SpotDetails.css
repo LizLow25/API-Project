@@ -1,7 +1,11 @@
+.detailscontainer {
+ padding: 10px;
+}
+
 
 .imagecontainer {
     display: flex;
-    gap: 10px;
+    justify-content: center;
 
 
 }
@@ -10,7 +14,8 @@
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    width: 50%
+    width: 50%;
+    justify-content: center;
 
 }
 
@@ -27,4 +32,75 @@
 .innerpicture {
     object-fit: cover;
     width: 40%
+}
+
+
+.infocontainer {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 50px;
+    border-bottom: black solid 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.informationBox {
+    border: black solid 2px;
+    border-radius: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.topbox {
+    display: flex;
+    gap: 70px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rightcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.reservebutton {
+    width: 300px;
+    height: 50px;
+    margin: 0 20px 20px 20px;
+    color: white;
+    background-color: #FF385C;
+    box-shadow: 2px 3px 3px black;
+}
+
+
+.reviewlist {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.reviewlistinner {
+    padding-bottom: 20px;
+}
+
+.spotdetailsfirstreviewbutton {
+    list-style-type: none;
+    color: white;
+    background-color: grey;
+    box-shadow: 2px 3px 3px black;
+}
+
+.pricedetails {
+    font-size: 20px;
+}
+
+.reviewdate {
+    margin: 5px 0;
+    color: grey;
+}
+
+.reviewdat  {
+    margin: 10px 0;
 }

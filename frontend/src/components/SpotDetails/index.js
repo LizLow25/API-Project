@@ -40,9 +40,14 @@ const SpotDetails = () => {
 
     if (!spotData.SpotImages) return null
 
+    //add alert message the the reserve feature is coming soon
+    const handleClick = () => {
+        window.alert('Feature coming soon');
+    };
+
 
     return (
-        <div>
+        <div className='detailscontainer'>
             <h2>{spotData.name}</h2>
             <h3>{`${spotData.city}, ${spotData.state}, ${spotData.country}`}</h3>
             <div className='imagecontainer'>
@@ -57,39 +62,50 @@ const SpotDetails = () => {
 
                 </div>
             </div>
-            <p>{`Hosted by ${spotData.Owner?.firstName} ${spotData.Owner?.lastName}`}</p>
-            <div>
-                <p>{spotData.description}</p>
-                <div className='informationBox'>
-                    <div>
-                        <p>{`$${spotData.price} night`}</p>
-                        <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` - ${spotData.numReviews} Review` : ` - ${spotData.numReviews} Reviews` : ''}</p>
-                        <button>Reserve</button>
+
+            <div className='infocontainer'>
+                <div>
+                    <h3>{`Hosted by ${spotData.Owner?.firstName} ${spotData.Owner?.lastName}`}</h3>
+                    <p>{spotData.description}</p>
+                </div>
+                <div className='rightcontainer'>
+                    <div className='informationBox'>
+                        <div className='topbox'>
+                            <p className='pricedetails'>{`$${spotData.price.toFixed(2)} night`}</p>
+                            <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
+                        </div>
+                        <button
+                            onClick={handleClick}
+                            className='reservebutton'
+                        >Reserve</button>
                     </div>
                 </div>
 
             </div>
 
             <div>
-                <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` - ${spotData.numReviews} Review` : ` - ${spotData.numReviews} Reviews` : ''}</p>
+                <h3><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</h3>
             </div>
-            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button><OpenModalMenuItem
+            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button
+            className='spotdetailsfirstreviewbutton'
+
+            ><OpenModalMenuItem
                 itemText="Be the First to Post a Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
-            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button><OpenModalMenuItem
+            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button className='spotdetailsfirstreviewbutton'><OpenModalMenuItem
                 itemText="Post Your Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
-            <ul>
+            <ul className='reviewlist'>
                 {shallowReview.length ? shallowReview.map((review) => (
-                    <li key={review.id}>
-                        <h3>{review.User?.firstName}</h3>
-                        <p>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
+                    <li key={review.id} className='reviewlistinner'>
+                        <h3 className='reviewdat'>{review.User?.firstName}</h3>
+                        <p className='reviewdate'>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
                             year: "numeric",
                             month: "long"
-                        }): ''}</p>
-                        <p>{review.review}</p>
+                        }) : ''}</p>
+                        <p className='reviewdat'>{review.review}</p>
                         {user && user?.id === review.User?.id ? <button><OpenModalMenuItem
                             itemText="Delete"
                             modalComponent={<DeleteReviewModal id={review.id} spotId={spotId} />}
