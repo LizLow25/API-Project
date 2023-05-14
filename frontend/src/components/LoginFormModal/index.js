@@ -63,6 +63,7 @@ function LoginFormModal() {
 
                 >Log In</button>
                 <button
+                className="demobutton"
                     onClick={() => {
                         setCredential("TurtlyTeensk")
                         setPassword("password")
