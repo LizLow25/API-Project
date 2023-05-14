@@ -106,7 +106,7 @@ const SpotDetails = () => {
                             month: "long"
                         }) : ''}</p>
                         <p className='reviewdat'>{review.review}</p>
-                        {user && user?.id === review.User?.id ? <button><OpenModalMenuItem
+                        {user && user?.id === review.User?.id ? <button className='spotdetailsfirstreviewbutton'><OpenModalMenuItem
                             itemText="Delete"
                             modalComponent={<DeleteReviewModal id={review.id} spotId={spotId} />}
                         /></button> : ''}

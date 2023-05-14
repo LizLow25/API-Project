@@ -59,7 +59,7 @@ function CreateReviewModal({ spotId }) {
     return (
         <div className="reviewmodal">
             <h1>How was your stay?</h1>
-            <form onSubmit={handleSubmit}>
+            <form className='reviewformmodal' onSubmit={handleSubmit}>
                 <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
@@ -103,9 +103,10 @@ function CreateReviewModal({ spotId }) {
                             onClick={() => onChange(5)}
                         ></i>
                     </div>
-                    <p> Stars</p>
+                    <p className='starstext'>Stars</p>
                 </div>
                 <button
+                className='submitreviewbutton'
                 type="submit"
                 disabled={disabled}
                 >Submit Your Review</button>

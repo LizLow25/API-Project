@@ -14,7 +14,7 @@ function DeleteReviewModal({ id, spotId }) {
         return closeModal()
     }
 
-    const deleteReviewClick = async() => {
+    const deleteReviewClick = async () => {
         await dispatch(deleteReviewAction(id))
         await dispatch(loadSpotDetailsAction(spotId))
         return closeModal()
@@ -24,12 +24,16 @@ function DeleteReviewModal({ id, spotId }) {
 
     return (
         <div className="deletemodal">
-            <h1>Confirm Delete</h1>
-            <h2>Are you sure you want to delete this review?</h2>
-            <button onClick={deleteReviewClick}>Yes (Delete Review)</button>
-            <button
-                onClick={closeDelete}>No (Keep Review)</button>
-
+            <div className='deletereviewcontainer'>
+                <h2>Confirm Delete</h2>
+                <h3>Are you sure you want to delete this review?</h3>
+                <button
+                    className='deletereviewbutton'
+                    onClick={deleteReviewClick}>Yes (Delete Review)</button>
+                <button
+                    className='dontdeletereviewbutton'
+                    onClick={closeDelete}>No (Keep Review)</button>
+            </div>
         </div>
     )
 

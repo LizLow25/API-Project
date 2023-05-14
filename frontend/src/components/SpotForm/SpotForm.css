@@ -3,3 +3,16 @@
 .errors {
     color: red;
 }
+
+.inputbox {
+    display: flex;
+    justify-content: center;
+}
+
+.formcontainer {
+    padding: 0 300px;
+}
+
+.citystate {
+    display: flex;
+}
