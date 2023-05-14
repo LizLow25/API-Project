@@ -71,7 +71,7 @@ const SpotDetails = () => {
                 <div className='rightcontainer'>
                     <div className='informationBox'>
                         <div className='topbox'>
-                            <p className='pricedetails'>{`$${Number.parseFloat(spotData.price).toFixed(2)} night`}</p>
+                            <p className='pricedetails'>{`$${spot.price} night`}</p>
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
                         <button
