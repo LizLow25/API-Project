@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getSpotsByOwner } from "../../store/spots";
-import ManageSpotCard from '../ManageSpotCard';
+import SpotCard from '../SpotCard'
+import './ManageSpots.css'
 
 
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
@@ -25,19 +26,19 @@ const ManageSpots = () => {
     return (
         <>
             <h2>Manage Spots</h2>
-            <div>
+            <div className='managepage'>
                 {user && !spots.length ? <Link to='/spots/new'><button>Create New Spot</button></Link> : ''}
                 <ul className='spotcards'>
                     {spots?.map((spot) => (
-                        <div key={spot.id}>
+                        <div key={spot.id} className='managespotcard'>
                             <Link to={`/spots/${spot.id}`} className='spotlink' >
-                                <ManageSpotCard
+                                <SpotCard
                                     spot={spot}
                                 />
                             </Link>
 
-                            <Link exact to={`/spots/${spot.id}/edit`}><button>Update</button></Link>
-                            <button><OpenModalMenuItem
+                            <Link exact to={`/spots/${spot.id}/edit`}><button className='updatedeletespotbutton'>Update</button></Link>
+                            <button className='updatedeletespotbutton'><OpenModalMenuItem
                                 itemText="Delete"
                                 modalComponent={<DeleteSpotModal spot={spot} />}
                             /></button>

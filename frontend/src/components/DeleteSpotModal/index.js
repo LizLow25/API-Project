@@ -11,7 +11,7 @@ function DeleteSpotModal({ spot }) {
         return closeModal()
     }
 
-    const deleteSpotClick = async() => {
+    const deleteSpotClick = async () => {
         await dispatch(deleteSpotAction(spot.id))
         return closeModal()
 
@@ -20,13 +20,17 @@ function DeleteSpotModal({ spot }) {
 
     return (
         <div className="deletemodal">
-            <h1>Confirm Delete</h1>
-            <h2>Are you sure you want to remove this spot
-                from the listings?</h2>
-            <button onClick={deleteSpotClick}>Yes (Delete Spot)</button>
-            <button
-                onClick={closeDelete}>No (Keep Spot)</button>
-
+            <div className='deletespotcontainer'>
+                <h2>Confirm Delete</h2>
+                <h3 className='suredeletespot'>Are you sure you want to remove this spot
+                    from the listings?</h3>
+                <button
+                    className='deletespotbutton'
+                    onClick={deleteSpotClick}>Yes (Delete Spot)</button>
+                <button
+                    className='dontdeletespotbutton'
+                    onClick={closeDelete}>No (Keep Spot)</button>
+            </div>
         </div>
     )
 
