@@ -19,12 +19,16 @@ const SpotList = () => {
         <div className='landingpage'>
             <ul className='spotcards'>
                 {spots.map((spot) => (
-                    <Link to={`/spots/${spot.id}`} className='spotlink' key={spot.id}
-                    >
-                        <SpotCard
-                            spot={spot}
-                        />
-                    </Link>
+                    <div key={spot.id}>
+                        <Link to={`/spots/${spot.id}`} className='spotlink'
+                        >
+                            {console.log('spot.price', spot.price)}
+                            <SpotCard
+                                spot={spot}
+                                spotPrice={spot.price}
+                            />
+                        </Link>
+                    </div>
                 ))}
             </ul>
         </div>
