@@ -1,7 +1,6 @@
-
-
 .errors {
     color: red;
+    padding-left: 5px;
 }
 
 .inputbox {
@@ -11,8 +10,98 @@
 
 .formcontainer {
     padding: 0 300px;
+    width: 500px;
+}
+
+.inputformbox {
+    width: 500px;
+    margin: 3px;
 }
 
 .citystate {
     display: flex;
+    align-items: bottom;
+}
+
+
+.comma {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.citytop {
+    display: flex;
+    justify-content: space-between;
+}
+
+.statetop {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.latlong {
+    display: flex;
+}
+
+.lattop {
+    display: flex;
+}
+
+.longtop {
+    display: flex;
+}
+
+.countrytop {
+    display: flex;
+}
+
+.addresstop {
+    display: flex;
+}
+
+.priceinput {
+    display: flex;
+}
+
+.formpartone {
+    border-bottom: 1px black solid;
+}
+
+
+.formparttwo {
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
+}
+
+.formpartthree {
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
+}
+
+.formpartfour {
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
+}
+
+.formpartfive {
+    border-bottom: 1px black solid;
+    padding-bottom: 10px;
+}
+
+.createspotbuttonform {
+    margin: 10px;
+    background-color: #FF385C;
+    color: white;
+    box-shadow: 1px 5px 5px black;
+    width: 200px;
+}
+
+.formpartsix {
+    display: flex;
+    justify-content: center;
+}
+
+.shortinput {
+    width: 240px;
 }
