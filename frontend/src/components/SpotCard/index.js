@@ -4,7 +4,7 @@ const SpotCard = ({ spot }) => {
 
 
     return (
-        <li className="spotcard">
+        <div className="spotcard">
             <div title={spot.name}>
                 <div className='picturediv'>
                 <img className='image' src={spot.previewImage} alt='' />
@@ -17,7 +17,7 @@ const SpotCard = ({ spot }) => {
 
             </div>
 
-        </li>
+        </div>
 
 
 

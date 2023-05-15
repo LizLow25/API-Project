@@ -34,3 +34,15 @@
     text-decoration: none;
 
 }
+
+.rightside {
+    display: flex;
+    align-items: center;
+
+}
+
+.navnewspotbutton {
+    margin-right: 20px;
+    text-decoration: none;
+    color: rgb(29, 120, 189);
+}

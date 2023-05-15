@@ -2,11 +2,17 @@
     display: flex;
     flex-flow: row wrap;
     text-decoration: none;
-    justify-content: center;
+    align-self: center;
+    padding-left: 20px;
 
 }
 
 
 .spotlink {
     text-decoration: none;
+}
+
+.landingpage {
+    display: flex;
+
 }

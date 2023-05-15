@@ -5,6 +5,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import './ProfileButton.css'
 
 function ProfileButton() {
     const history = useHistory();
@@ -45,34 +46,45 @@ function ProfileButton() {
 
     return (
         <>
+
             <button onClick={openMenu} className="navbutton">
                 <i className="fa-solid fa-bars fa-2x"></i>
                 <i className="fas fa-user-circle fa-2x" />
             </button>
+
             <ul className={ulClassName} ref={ulRef}>
                 {user ? (
                     <>
-                        <li>{`Hello, ${user.firstName}`}</li>
-                        <li>{user.email}</li>
-                        <li>
-                            <NavLink exact to='/spots/current'>Manage Spots</NavLink>
-                        </li>
-                        <li>
-                            <button onClick={logout}>Log Out</button>
-                        </li>
+
+                        <div className="userdropcontainer">
+                            <div className="toppart">
+                                <li>{`Hello, ${user.firstName}`}</li>
+                                <li>{user.email}</li>
+                            </div>
+                            <li className="managespots">
+                                <NavLink className="managespots" exact to='/spots/current'>Manage Spots</NavLink>
+                            </li>
+                            <li>
+                                <button
+                                    className="userlogoutbutton"
+                                    onClick={logout}>Log Out</button>
+                            </li>
+                        </div>
                     </>
                 ) : (
                     <>
-                        <OpenModalMenuItem
-                            itemText="Log In"
-                            onItemClick={closeMenu}
-                            modalComponent={<LoginFormModal />}
-                        />
-                        <OpenModalMenuItem
-                            itemText="Sign Up"
-                            onItemClick={closeMenu}
-                            modalComponent={<SignupFormModal />}
-                        />
+                        <div className="userdropcontainer">
+                            <OpenModalMenuItem
+                                itemText="Log In"
+                                onItemClick={closeMenu}
+                                modalComponent={<LoginFormModal />}
+                            />
+                            <OpenModalMenuItem
+                                itemText="Sign Up"
+                                onItemClick={closeMenu}
+                                modalComponent={<SignupFormModal />}
+                            />
+                        </div>
                     </>
                 )}
             </ul>

@@ -17,7 +17,7 @@ const SpotList = () => {
 
     return (
         <div className='landingpage'>
-            <ul className='spotcards'>
+            <div className='spotcards'>
                 {spots.map((spot) => (
                     <div key={spot.id}>
                         <Link to={`/spots/${spot.id}`} className='spotlink'
@@ -30,7 +30,7 @@ const SpotList = () => {
                         </Link>
                     </div>
                 ))}
-            </ul>
+            </div>
         </div>
 
     )

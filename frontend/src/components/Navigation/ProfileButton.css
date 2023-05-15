@@ -1,0 +1,33 @@
+.userdropcontainer {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: black 2px solid;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
+    right: 20px;
+    width: 120px;
+
+}
+
+.userlogoutbutton {
+    background-color: grey;
+    color: white;
+    border-radius: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.toppart {
+    border-bottom: 1px black solid;
+    padding-bottom: 5px;
+}
+
+
+.managespots {
+    padding: 5px 0;
+    text-decoration: none;
+    border-bottom: 1px black solid;
+}

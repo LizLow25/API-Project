@@ -12,12 +12,14 @@ function Navigation({ isLoaded }) {
       <li>
         <NavLink className='logo' exact to="/">airRV</NavLink>
       </li>
-      <li>{sessionUser ? <NavLink exact to="/spots/new"><button> Create a New Spot </button> </NavLink> : ''}</li>
+      <div className='rightside'>
+      <li>{sessionUser ? <NavLink className='navnewspotbutton' exact to="/spots/new" >Create a New Spot</NavLink> : ''}</li>
       {isLoaded && (
         <li>
           <ProfileButton user={sessionUser} />
         </li>
       )}
+      </div>
     </ul>
   );
 }
