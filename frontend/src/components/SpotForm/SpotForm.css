@@ -9,8 +9,8 @@
 }
 
 .formcontainer {
-    padding: 0 300px;
     width: 500px;
+    margin: auto;
 }
 
 .inputformbox {
@@ -90,7 +90,7 @@
 }
 
 .createspotbuttonform {
-    margin: 10px;
+    margin: 30px;
     background-color: #FF385C;
     color: white;
     box-shadow: 1px 5px 5px black;

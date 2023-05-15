@@ -1,11 +1,11 @@
-.spotcards {
+.spotcards{
     display: flex;
     flex-flow: row wrap;
     text-decoration: none;
-    align-self: center;
-    padding-left: 20px;
+
 
 }
+
 
 
 .spotlink {
@@ -14,5 +14,6 @@
 
 .landingpage {
     display: flex;
+    margin: auto;
 
 }
