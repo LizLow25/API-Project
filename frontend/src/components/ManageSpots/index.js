@@ -28,7 +28,7 @@ const ManageSpots = () => {
             <h2>Manage Spots</h2>
             <div className='managepage'>
                 {user && !spots.length ? <Link to='/spots/new'><button>Create New Spot</button></Link> : ''}
-                <ul className='spotcards'>
+                <div className='spotcards'>
                     {spots?.map((spot) => (
                         <div key={spot.id} className='managespotcard'>
                             <Link to={`/spots/${spot.id}`} className='spotlink' >
@@ -37,14 +37,17 @@ const ManageSpots = () => {
                                 />
                             </Link>
 
-                            <Link exact to={`/spots/${spot.id}/edit`}><button className='updatedeletespotbutton'>Update</button></Link>
-                            <button className='updatedeletespotbutton'><OpenModalMenuItem
-                                itemText="Delete"
-                                modalComponent={<DeleteSpotModal spot={spot} />}
-                            /></button>
+                            <div className='buttoncontainer'>
+
+                                <Link exact to={`/spots/${spot.id}/edit`}><button className='updatedeletespotbutton'>Update</button></Link>
+                                <button className='updatedeletespotbutton'><OpenModalMenuItem
+                                    itemText="Delete"
+                                    modalComponent={<DeleteSpotModal spot={spot} />}
+                                /></button>
+                            </div>
                         </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </>
     )

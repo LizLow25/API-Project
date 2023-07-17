@@ -17,7 +17,7 @@ const SpotList = () => {
 
     return (
         <div className='landingpage'>
-            <div className='spotcards'>
+
 
                 {spots.map((spot) => (
                     <div key={spot.id}>
@@ -32,7 +32,7 @@ const SpotList = () => {
                     </div>
                 ))}
 
-            </div>
+            
         </div>
 
     )
