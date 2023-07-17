@@ -55,10 +55,10 @@ const SpotDetails = () => {
                 <img className='leadpicture' src={spotData.SpotImages[0]?.url} alt='' />
 
                 <div className='picturegrid'>
-                    <img className='innerpicture' src={spotData.SpotImages[1]?.url} alt='' />
-                    <img className='innerpicture' src={spotData.SpotImages[2]?.url} alt='' />
-                    <img className='innerpicture' src={spotData.SpotImages[3]?.url} alt='' />
-                    <img className='innerpicture' src={spotData.SpotImages[4]?.url} alt='' />
+                    <img className='innerpicture one' src={spotData.SpotImages[1]?.url} alt='' />
+                    <img className='innerpicture two' src={spotData.SpotImages[2]?.url} alt='' />
+                    <img className='innerpicture three' src={spotData.SpotImages[3]?.url} alt='' />
+                    <img className='innerpicture four' src={spotData.SpotImages[4]?.url} alt='' />
 
                 </div>
             </div>

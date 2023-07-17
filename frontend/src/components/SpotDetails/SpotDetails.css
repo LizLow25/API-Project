@@ -12,7 +12,7 @@
 
 .picturegrid {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     flex-wrap: wrap;
     width: 50%;
     justify-content: center;
@@ -23,15 +23,17 @@
 
 
 .leadpicture {
-    object-fit: contain;
-    width: 50%
+    object-fit: cover;
+    width: 50%;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 
 
 }
 
 .innerpicture {
     object-fit: cover;
-    width: 40%
+    width: 48%
 }
 
 
@@ -103,4 +105,12 @@
 
 .reviewdat  {
     margin: 10px 0;
+}
+
+.two {
+    border-top-right-radius: 20px;
+}
+
+.four {
+    border-bottom-right-radius: 20px;
 }

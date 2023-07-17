@@ -1,7 +1,7 @@
 .spotcard {
     list-style-type: none;
     display: flex;
-    width: 225px;
+    width: 275px;
     border-radius: 20px;
     padding-bottom: 5px;
     justify-content: center;
@@ -11,10 +11,10 @@
 
 .picturediv {
     display: flex;
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 250px;
     justify-content: center;
-    border-radius: 30px;
+    /* border-radius: 30px; */
 
 }
 
@@ -37,6 +37,7 @@
     justify-content: center;
     object-fit: cover;
     overflow: hidden;
+    border-radius: 20px;
 }
 
 .spotlink {
