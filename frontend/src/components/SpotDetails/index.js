@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadSpotDetailsAction } from '../../store/spots';
@@ -16,6 +16,11 @@ const SpotDetails = () => {
     const user = useSelector(state => state.session.user)
     const reviewData = Object.values(reviews)
     console.log("reviewData", reviewData)
+
+    //state for create booking
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [errors, setErrors] = useState({});
 
 
     //make a shallow copy of the review data and then call array.reverse() to switch the order of the reviews
@@ -74,10 +79,38 @@ const SpotDetails = () => {
                             <p className='pricedetails'>{`$${spotData.price} night`}</p>
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
-                        <button
-                            onClick={handleClick}
-                            className='reservebutton'
-                        >Reserve</button>
+                        <h1>Book your stay!</h1>
+                        <form >
+                            <label>
+                                Start Date <span className="errors">{errors.startDate}</span>
+                                <input
+                                    type="date"
+                                    value={startDate}
+                                    placeholder="Start Date"
+                                    onChange={(e) => setStartDate(e.target.value)}
+                                    className="start-date"
+                                />
+                            </label>
+                            <label>
+                                End Date <span className="errors">{errors.endDate}</span>
+                                <input
+                                    type="date"
+                                    value={endDate}
+                                    placeholder="End Date"
+                                    onChange={(e) => setEndDate(e.target.value)}
+                                    className="end-date"
+                                />
+                            </label>
+                            <div className="post-booking-button-container">
+                                <button
+                                    type="submit"
+                                    className="post-booking-button"
+                                //   disabled={disabled}
+                                >
+                                    Reserve
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -87,12 +120,12 @@ const SpotDetails = () => {
                 <h3><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</h3>
             </div>
             {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button
-            className='spotdetailsfirstreviewbutton'
+                className='spotdetailsfirstreviewbutton'
 
             ><OpenModalMenuItem
-                itemText="Be the First to Post a Review!"
-                modalComponent={<CreateReviewModal spotId={spotId} />}
-            /></button> : ''}
+                    itemText="Be the First to Post a Review!"
+                    modalComponent={<CreateReviewModal spotId={spotId} />}
+                /></button> : ''}
             {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button className='spotdetailsfirstreviewbutton'><OpenModalMenuItem
                 itemText="Post Your Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
