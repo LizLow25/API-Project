@@ -2,6 +2,7 @@
     list-style-type: none;
     display: flex;
     width: 275px;
+    
     border-radius: 20px;
     padding-bottom: 5px;
     justify-content: center;
@@ -11,8 +12,10 @@
 
 .picturediv {
     display: flex;
-    width: 250px;
-    height: 250px;
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    min-height: 250px;
     justify-content: center;
     /* border-radius: 30px; */
 

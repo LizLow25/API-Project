@@ -1,7 +1,6 @@
 .landingpage{
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-decoration: none;
 
 
@@ -11,10 +10,4 @@
 
 .spotlink {
     text-decoration: none;
-}
-
-.landingpage {
-    display: flex;
-    margin: auto;
-
 }

@@ -7,6 +7,7 @@ import { loadSpotReviewsAction } from '../../store/reviews';
 import CreateReviewModal from '../CreateReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteReviewModal from '../DeleteReviewModal';
+import { createBookingThunk } from '../../store/bookings';
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
@@ -45,9 +46,27 @@ const SpotDetails = () => {
 
     if (!spotData.SpotImages) return null
 
-    //add alert message the the reserve feature is coming soon
-    const handleClick = () => {
-        window.alert('Feature coming soon');
+    // Building form object for booking thunk submission
+    const form = {};
+    form.startDate = startDate;
+    form.endDate = endDate;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const newErrors = {};
+        if (new Date() > new Date(startDate).getTime())
+            newErrors["startDate"] = "Start date must be in the future!";
+        if (!startDate) newErrors["startDate"] = "Please select a start date!";
+        if (new Date(endDate) < new Date(startDate).getTime())
+            newErrors["endDate"] = "End date must be after the start date!";
+        if (!endDate) newErrors["endDate"] = "Please select an end date!";
+
+        setErrors(newErrors);
+        if (Object.keys(newErrors).length) return;
+
+        dispatch(createBookingThunk(form, spotId));
+
     };
 
 
@@ -80,9 +99,9 @@ const SpotDetails = () => {
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
                         <h1>Book your stay!</h1>
-                        <form >
+                        <form onSubmit={handleSubmit}>
                             <label>
-                                Start Date <span className="errors">{errors.startDate}</span>
+                                CHECK-IN <span className="errors">{errors.startDate}</span>
                                 <input
                                     type="date"
                                     value={startDate}
@@ -92,7 +111,7 @@ const SpotDetails = () => {
                                 />
                             </label>
                             <label>
-                                End Date <span className="errors">{errors.endDate}</span>
+                                CHECKOUT <span className="errors">{errors.endDate}</span>
                                 <input
                                     type="date"
                                     value={endDate}
