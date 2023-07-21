@@ -17,7 +17,6 @@ const SpotCard = ({ spot }) => {
                 <p className='textcontainer price'>{`$${Math.floor(spot?.price)} night`}</p>
 
             </div>
-
         </div>
 
 

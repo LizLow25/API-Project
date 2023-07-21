@@ -7,10 +7,12 @@ import { loadSpotReviewsAction } from '../../store/reviews';
 import CreateReviewModal from '../CreateReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteReviewModal from '../DeleteReviewModal';
-import { createBookingThunk } from '../../store/bookings';
+import { createBookingThunk, getUserBookingsThunk } from '../../store/bookings';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { spotId } = useParams();
     const spotData = useSelector(state => state.spots.singleSpot)
     const reviews = useSelector(state => state.reviews.spot)
@@ -66,6 +68,8 @@ const SpotDetails = () => {
         if (Object.keys(newErrors).length) return;
 
         dispatch(createBookingThunk(form, spotId));
+        dispatch(getUserBookingsThunk())
+        history.push('/bookings')
 
     };
 
