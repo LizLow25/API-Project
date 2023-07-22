@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserBookingsThunk } from '../../store/bookings';
+import { getUserBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 import SpotCard from "../SpotCard";
 import { Link } from 'react-router-dom'
 
@@ -10,6 +10,11 @@ function Bookings() {
 
     console.log('bookings', bookings)
 
+    const deleteBookingClick = async (id) => {
+        await dispatch(deleteBookingThunk(id))
+        await dispatch(getUserBookingsThunk())
+    }
+
 
 
     useEffect(() => {
@@ -18,7 +23,9 @@ function Bookings() {
     }, [dispatch]);
 
     return (
-        <div className='landingpage'>
+        <div>
+            <h2>Trips</h2>
+            <div className='landingpage'>
 
 
                 {bookings?.map((booking) => (
@@ -32,15 +39,27 @@ function Bookings() {
                             />
                             <p>
 
-            </p>
+                            </p>
 
                         </Link>
                         {new Date(booking.startDate).toUTCString().slice(4, 16)} - {new Date(booking.endDate).toUTCString().slice(4, 16)}
+                        {new Date() < new Date(booking.startDate).getTime() ? (
+                            <div className="booking-spot-card-button-container">
+                                <button>Update</button>
+                                <button onClick={() => deleteBookingClick(booking.id)}>Delete</button>
+
+
+                            </div>
+                        ) : (
+                            <p className="booking-closed">BOOKING CLOSED</p>)}
+
                     </div>
                 ))}
 
 
+            </div>
         </div>
+
     )
 
 }

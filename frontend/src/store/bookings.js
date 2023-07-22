@@ -18,8 +18,6 @@ export const getUserBookingsThunk = () => async (dispatch) => {
   };
 
 
-
-
 //Create a new booking
 export const createBookingThunk = (form, spotId) => async (dispatch) => {
     let response;
@@ -36,6 +34,24 @@ export const createBookingThunk = (form, spotId) => async (dispatch) => {
       const errors = await e.json();
       console.log(errors)
       return errors;
+    }
+  };
+
+//Delete a booking
+export const deleteBookingThunk = (bookingId) => async (dispatch) => {
+
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+      method: "DELETE",
+    });
+
+    if (!response.ok) {
+      const errors = await response.json();
+
+      return errors;
+    } else {
+
+      const data = await response.json();
+      return data;
     }
   };
 
