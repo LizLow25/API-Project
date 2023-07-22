@@ -155,7 +155,7 @@ router.put('/:bookingId',
             let endBookedTime = endD.getTime()
 
             //if the requested start date is inside another booking, res.json(error)
-            if (reqStartTime >= startBookedTime && reqStartTime <= endBookedTime) {
+            if (reqStartTime >= startBookedTime && reqStartTime <= endBookedTime && booking.userId !== person.id) {
 
                 return res.status(403).json({
                     "message": "Sorry, this spot is already booked for the specified dates",

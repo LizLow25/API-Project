@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserBookingsThunk, deleteBookingThunk } from '../../store/bookings';
 import SpotCard from "../SpotCard";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import OpenModalButton from "../OpenModalButton";
+import UpdateBookingModal from "../UpdateBookingModal";
+
 
 function Bookings() {
     const dispatch = useDispatch();
@@ -45,8 +48,15 @@ function Bookings() {
                         {new Date(booking.startDate).toUTCString().slice(4, 16)} - {new Date(booking.endDate).toUTCString().slice(4, 16)}
                         {new Date() < new Date(booking.startDate).getTime() ? (
                             <div className="booking-spot-card-button-container">
-                                <button>Update</button>
-                                <button onClick={() => deleteBookingClick(booking.id)}>Delete</button>
+                                <OpenModalButton
+                                    className="open-update-booking-modal-button"
+                                    buttonText="Update"
+                                    modalComponent={
+                                        <UpdateBookingModal
+                                            booking={booking}
+                                        />}
+                                        />
+                                        <button onClick={() => deleteBookingClick(booking.id)}>Delete</button>
 
 
                             </div>
