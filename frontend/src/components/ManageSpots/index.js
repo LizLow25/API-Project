@@ -8,19 +8,22 @@ import './ManageSpots.css'
 
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteSpotModal from '../DeleteSpotModal';
+import { getSpotBookingsThunk } from '../../store/bookings';
 
 const ManageSpots = () => {
     const dispatch = useDispatch();
     const spotsData = useSelector(state => state.spots.allSpots);
+
     const user = useSelector(state => state.session.user)
 
     const spots = Object.values(spotsData);
 
     useEffect(() => {
         dispatch(getSpotsByOwner())
+
     }, [dispatch])
 
-    console.log(spots.length)
+
 
 
     return (

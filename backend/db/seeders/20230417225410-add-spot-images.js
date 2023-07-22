@@ -220,7 +220,352 @@ module.exports = {
         spotId: 8,
         url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-49130510/original/209229b3-566d-4c0c-a70e-ebf28a1a0b9b.jpeg?im_w=720',
         preview: false,
-      }
+      },
+      {
+        spotId: 9,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot9img1.png',
+        preview: true,
+      },
+      {
+        spotId: 9,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot9img2.png',
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot9img3.png',
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot9img4.png',
+        preview: false,
+      },
+      {
+        spotId: 9,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot9img5.png',
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot10img1.png',
+        preview: true,
+      },
+      {
+        spotId: 10,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot10img2.png',
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot10img3.png',
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot10img4.png',
+        preview: false,
+      },
+      {
+        spotId: 10,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot10img5.png',
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot11img1.png',
+        preview: true,
+      },
+      {
+        spotId: 11,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot11img2.png',
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot11img3.png',
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot11img4.png',
+        preview: false,
+      },
+      {
+        spotId: 11,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot11img5.png',
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot12img1.png',
+        preview: true,
+      },
+      {
+        spotId: 12,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot12img2.png',
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot12img3.png',
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot12img4.png',
+        preview: false,
+      },
+      {
+        spotId: 12,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot12img5.png',
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot13img1.png',
+        preview: true,
+      },
+      {
+        spotId: 13,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot13img2.png',
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot13img3.png',
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot13img4.png',
+        preview: false,
+      },
+      {
+        spotId: 13,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot13img5.png',
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot14img1.png',
+        preview: true,
+      },
+      {
+        spotId: 14,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot14img2.png',
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot14img3.png',
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot14img4.png',
+        preview: false,
+      },
+      {
+        spotId: 14,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot14img5.png',
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot15img1.png',
+        preview: true,
+      },
+      {
+        spotId: 15,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot15img2.png',
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot15img3.png',
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot15img4.png',
+        preview: false,
+      },
+      {
+        spotId: 15,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot15img5.png',
+        preview: false,
+      },
+       {
+        spotId: 16,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot16img1.png',
+        preview: true,
+      },
+      {
+        spotId: 16,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot16img2.png',
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot16img3.png',
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot16img4.png',
+        preview: false,
+      },
+      {
+        spotId: 16,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot16img5.png',
+        preview: false,
+      },
+       {
+        spotId: 17,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot17img1.png',
+        preview: true,
+      },
+      {
+        spotId: 17,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot17img2.png',
+        preview: false,
+      },
+      {
+        spotId: 17,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot17img3.png',
+        preview: false,
+      },
+      {
+        spotId: 17,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot17img4.png',
+        preview: false,
+      },
+      {
+        spotId: 17,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot17img5.png',
+        preview: false,
+      },
+       {
+        spotId: 18,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot18img1.png',
+        preview: true,
+      },
+      {
+        spotId: 18,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot18img2.png',
+        preview: false,
+      },
+      {
+        spotId: 18,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot18img3.png',
+        preview: false,
+      },
+      {
+        spotId: 18,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot18img4.png',
+        preview: false,
+      },
+      {
+        spotId: 18,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot18img5.png',
+        preview: false,
+      },
+       {
+        spotId: 19,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot19img1.png',
+        preview: true,
+      },
+      {
+        spotId: 19,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot19img2.png',
+        preview: false,
+      },
+      {
+        spotId: 19,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot19img3.png',
+        preview: false,
+      },
+      {
+        spotId: 19,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot19img4.png',
+        preview: false,
+      },
+      {
+        spotId: 19,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot19img5.png',
+        preview: false,
+      },
+       {
+        spotId: 20,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot20img1.png',
+        preview: true,
+      },
+      {
+        spotId: 20,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot20img2.png',
+        preview: false,
+      },
+      {
+        spotId: 20,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot20img3.png',
+        preview: false,
+      },
+      {
+        spotId: 20,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot20img4.png',
+        preview: false,
+      },
+      {
+        spotId: 20,
+        url: 'https://everetsybucket.s3.us-west-1.amazonaws.com/spot20img5.png',
+        preview: false,
+      },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: true,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: false,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: false,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: false,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: false,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: ,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: ,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: ,
+      // },
+      // {
+      //   spotId: ,
+      //   url: '',
+      //   preview: ,
+      // },
     ], {})
   },
 

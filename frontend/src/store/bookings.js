@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
 export const LOAD_USER_BOOKINGS = "bookings/LOAD_USER_BOOKINGS";
+export const LOAD_SPOT_BOOKINGS = "bookings/LOAD_SPOT_BOOKINGS";
 
 
 // ---------- ACTION CREATORS ----------
@@ -8,6 +9,11 @@ export const loadUserBookings = (bookings) => ({
     type: LOAD_USER_BOOKINGS,
     bookings,
 });
+
+export const loadSpotBookings = (bookings) => ({
+    type: LOAD_SPOT_BOOKINGS,
+    bookings,
+  });
 
 // ---------- THUNKS ----------
 //Get all of the Current User's Bookings
@@ -80,6 +86,13 @@ export const updateBookingThunk = (form, bookingId) => async (dispatch) => {
     }
 };
 
+//Get all of the Current spot's Bookings
+export const getSpotBookingsThunk = (spotId) => async (dispatch) => {
+    const response = await fetch(`/api/spots/${spotId}/bookings`);
+    const bookings = await response.json();
+    dispatch(loadSpotBookings(bookings));
+  };
+
 
 // ---------- INITIAL STATE -------------
 const initialState = { user: {}, spot: {} };
@@ -90,9 +103,9 @@ const bookingsReducer = (state = initialState, action) => {
         case LOAD_USER_BOOKINGS:
             let userBookingsState = { ...state, user: { ...action.bookings } };
             return userBookingsState;
-        // case LOAD_SPOT_BOOKINGS:
-        //   let spotBookingsState = { ...state, spot: { ...action.bookings } };
-        //   return spotBookingsState;
+        case LOAD_SPOT_BOOKINGS:
+          let spotBookingsState = { ...state, spot: { ...action.bookings } };
+          return spotBookingsState;
         default:
             return state;
     }
