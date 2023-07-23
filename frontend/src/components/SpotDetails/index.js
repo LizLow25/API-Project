@@ -99,7 +99,7 @@ const SpotDetails = () => {
                 <div className='rightcontainer'>
                     <div className='informationBox'>
                         <div className='topbox'>
-                            <p className='pricedetails'>{`$${spotData.price} night`}</p>
+                            <p className='pricedetails'>{`$${Math.floor(spotData.price)} night`}</p>
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
                         {/* <h1>Book your stay!</h1> */}
