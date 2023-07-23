@@ -12,10 +12,11 @@ function CreateReviewModal({ spotId }) {
     const [disabled, setDisabled] = useState(true)
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0)
+    const [errors, setErrors] = useState({})
     const [stars, setStars] = useState(['empty', 'empty', 'empty', 'empty', 'empty']);
 
     useEffect(() => {
-        if(review.length > 10 && rating) setDisabled(false)
+        if (review.length > 10 && rating) setDisabled(false)
 
     }, [review, rating])
 
@@ -37,6 +38,16 @@ function CreateReviewModal({ spotId }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let newErrors = {}
+
+
+        if (review.length < 10) newErrors['review'] = "Review must be over 10 characters"
+        if (!rating) newErrors['stars'] = "Please select a star rating"
+
+        setErrors(newErrors)
+
+        if (Object.values(newErrors).length) return
+
         const newReview = {
             review,
             stars: rating
@@ -47,7 +58,7 @@ function CreateReviewModal({ spotId }) {
         await dispatch(loadSpotReviewsAction(spotId))
         await dispatch(loadSpotDetailsAction(spotId))
 
-       return closeModal()
+        return closeModal()
 
 
 
@@ -58,8 +69,9 @@ function CreateReviewModal({ spotId }) {
 
     return (
         <div className="reviewmodal">
-            <h1>How was your stay?</h1>
+            <h3>How was your stay?</h3>
             <form className='reviewformmodal' onSubmit={handleSubmit}>
+                <span className='errors'>{errors.review}</span>
                 <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
@@ -67,6 +79,7 @@ function CreateReviewModal({ spotId }) {
                     placeholder="Leave your review here..."
                     rows="8"
                 ></textarea>
+                <span className='errors'>{errors.stars}</span>
                 <div className="rating-input">
                     <div className={stars[0]} >
                         <i
@@ -106,9 +119,9 @@ function CreateReviewModal({ spotId }) {
                     <p className='starstext'>Stars</p>
                 </div>
                 <button
-                className='submitreviewbutton'
-                type="submit"
-                disabled={disabled}
+                    className='loginbutton'
+                    type="submit"
+
                 >Submit Your Review</button>
             </form>
 
