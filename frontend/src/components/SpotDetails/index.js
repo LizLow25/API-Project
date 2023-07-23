@@ -76,7 +76,7 @@ const SpotDetails = () => {
 
     return (
         <div className='detailscontainer'>
-            <h2>{spotData.name}</h2>
+            <h2 className='spotdetailspagename'>{spotData.name}</h2>
             <h3>{`${spotData.city}, ${spotData.state}, ${spotData.country}`}</h3>
             <div className='imagecontainer'>
 
@@ -92,7 +92,7 @@ const SpotDetails = () => {
             </div>
 
             <div className='infocontainer'>
-                <div>
+                <div className='spotdetailsleftcontainer'>
                     <h3>{`Hosted by ${spotData.Owner?.firstName} ${spotData.Owner?.lastName}`}</h3>
                     <p>{spotData.description}</p>
                 </div>
@@ -102,9 +102,10 @@ const SpotDetails = () => {
                             <p className='pricedetails'>{`$${spotData.price} night`}</p>
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
-                        <h1>Book your stay!</h1>
-                        <form onSubmit={handleSubmit}>
-                            <label>
+                        {/* <h1>Book your stay!</h1> */}
+                        <form className='bookingsform' onSubmit={handleSubmit}>
+                            <div className='checkformbox'>
+                            <label className='datebox'>
                                 CHECK-IN <span className="errors">{errors.startDate}</span>
                                 <input
                                     type="date"
@@ -114,7 +115,7 @@ const SpotDetails = () => {
                                     className="start-date"
                                 />
                             </label>
-                            <label>
+                            <label className='datebox right'>
                                 CHECKOUT <span className="errors">{errors.endDate}</span>
                                 <input
                                     type="date"
@@ -124,6 +125,7 @@ const SpotDetails = () => {
                                     className="end-date"
                                 />
                             </label>
+                            </div>
                             <div className="post-booking-button-container">
                                 <button
                                     type="submit"
