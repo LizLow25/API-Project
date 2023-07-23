@@ -158,6 +158,7 @@
     border: none;
     border-radius: 10px;
     color: white;
+    font-size: 16px;
 }
 
 .post-booking-button-container {
@@ -167,5 +168,31 @@
 }
 
 .spotdetailsleftcontainer {
-    padding-right: 30px;
+    padding-right: 60px;
+}
+
+.reviewlist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profileimage {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.hostinfo {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(34,34,34,.15);
+}
+
+.reviewuserinfo {
+    display: flex;
+}
+
+.reviewdat {
+    padding: 10px;
 }

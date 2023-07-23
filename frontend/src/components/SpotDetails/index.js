@@ -110,7 +110,10 @@ const SpotDetails = () => {
 
             <div className='infocontainer'>
                 <div className='spotdetailsleftcontainer'>
-                    <h3>{`Hosted by ${spotData.Owner?.firstName} ${spotData.Owner?.lastName}`}</h3>
+                    <div className='hostinfo'>
+                    <h3>{`Hosted by ${spotData.Owner?.firstName}`} </h3>
+                    <img className='profileimage' src={spotData.Owner?.image}/>
+                    </div>
                     <p>{spotData.description}</p>
                 </div>
                 <div className='rightcontainer'>
@@ -177,7 +180,10 @@ const SpotDetails = () => {
             <ul className='reviewlist'>
                 {shallowReview.length ? shallowReview.map((review) => (
                     <li key={review.id} className='reviewlistinner'>
+                        <div className='reviewuserinfo'>
+                        <img className='profileimage' src={review.User?.image} />
                         <h3 className='reviewdat'>{review.User?.firstName}</h3>
+                        </div>
                         <p className='reviewdate'>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
                             year: "numeric",
                             month: "long"

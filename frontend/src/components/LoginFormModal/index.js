@@ -24,6 +24,11 @@ function LoginFormModal() {
                 }
             });
     };
+    const demoLogin = (e) => {
+        return dispatch(sessionActions.login({ credential:'demo1', password:'password' }))
+        .then(closeModal)
+
+    }
 
     useEffect(() => {
         if (credential.length > 4 && password.length > 6) setDisabled(false)
@@ -64,11 +69,8 @@ function LoginFormModal() {
                 >Log In</button>
                 <button
                 className="demobutton"
-                    onClick={() => {
-                        setCredential("TurtlyTeensk")
-                        setPassword("password")
-                    }}
-                    type="submit"
+                    onClick={demoLogin}
+
                 >Log In as Demo User</button>
             </form>
 
