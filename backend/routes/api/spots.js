@@ -714,7 +714,7 @@ router.post('/:spotId/bookings',
 
         if (person.id === spot.ownerId) {
             return res.status(403).json({
-                "message": "Forbidden"
+                "message": "Owners of spots may not create bookings!"
             })
         }
 

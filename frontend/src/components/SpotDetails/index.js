@@ -24,6 +24,7 @@ const SpotDetails = () => {
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [errors, setErrors] = useState({});
+    const [backErrors, setBackErrors] = useState({})
 
 
     //make a shallow copy of the review data and then call array.reverse() to switch the order of the reviews
@@ -67,11 +68,27 @@ const SpotDetails = () => {
         setErrors(newErrors);
         if (Object.keys(newErrors).length) return;
 
-        dispatch(createBookingThunk(form, spotId));
+        let errors = await dispatch(createBookingThunk(form, spotId));
+        console.log("bookingerrors", errors)
+
+        if (errors) {
+            const newErrors = {}
+            newErrors["backend"] = errors.message
+            setBackErrors(newErrors);
+            return
+        }
+
+
+
         dispatch(getUserBookingsThunk())
         history.push('/bookings')
 
     };
+
+    console.log("formerrors", backErrors)
+
+
+
 
 
     return (
@@ -103,6 +120,7 @@ const SpotDetails = () => {
                             <p><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</p>
                         </div>
                         {/* <h1>Book your stay!</h1> */}
+                        <span className="errors">{backErrors.backend}</span>
                         <form className='bookingsform' onSubmit={handleSubmit}>
                             <div className='checkformbox'>
                             <label className='datebox'>
@@ -126,6 +144,7 @@ const SpotDetails = () => {
                                 />
                             </label>
                             </div>
+
                             <div className="post-booking-button-container">
                                 <button
                                     type="submit"

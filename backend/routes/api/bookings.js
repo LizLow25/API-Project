@@ -221,18 +221,18 @@ router.delete('/:bookingId',
         let bookedStartObj = new Date(bookedStartDate)
         let bookedStartTime = bookedStartObj.getTime()
 
-        if(bookedStartTime <= Date.now()) {
-            res.status(403).json({
-                "message": "Bookings that have been started can't be deleted"
-              })
-        }
+        // if(bookedStartTime <= Date.now()) {
+        //     res.status(403).json({
+        //         "message": "Bookings that have been started can't be deleted"
+        //       })
+        // }
 
 
-        if (person.id !== booking.userId && person.id !== booking.Spot.ownerId) {
-            return res.status(403).json({
-                "message": "Forbidden"
-            })
-        }
+        // if (person.id !== booking.userId || person.id !== booking.Spot.ownerId) {
+        //     return res.status(403).json({
+        //         "message": "Forbidden"
+        //     })
+        // }
 
         await booking.destroy()
 

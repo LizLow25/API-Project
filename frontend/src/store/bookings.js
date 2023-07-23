@@ -35,10 +35,9 @@ export const createBookingThunk = (form, spotId) => async (dispatch) => {
         });
         const newBooking = await response.json();
 
-        return newBooking;
+        return;
     } catch (e) {
         const errors = await e.json();
-        console.log(errors)
         return errors;
     }
 };
