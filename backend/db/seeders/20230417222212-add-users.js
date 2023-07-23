@@ -26,6 +26,7 @@ module.exports = {
         lastName:  'Hill',
         email: 'Alex@user.io',
         username: 'alex1',
+        image:'https://everetsybucket.s3.us-west-1.amazonaws.com/user1.png',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
@@ -33,6 +34,7 @@ module.exports = {
         lastName: 'Martinez',
         email: 'sophia@user.io',
         username: 'sophia',
+        image: 'https://everetsybucket.s3.us-west-1.amazonaws.com/user2.png',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
@@ -40,6 +42,7 @@ module.exports = {
         lastName: 'Lewis',
         email: 'harper@user.io',
         username: 'harper',
+        image: 'https://everetsybucket.s3.us-west-1.amazonaws.com/user3.png',
         hashedPassword: bcrypt.hashSync('password')
       }
     ], {})
