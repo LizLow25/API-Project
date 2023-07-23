@@ -55,7 +55,7 @@ const UpdateSpotForm = ({ spotData }) => {
         if (!name.length) frontE.name = "Name is required";
         if (description.length < 30) frontE.description = "Description needs a minimum of 30 characters";
         if (!price.length) frontE.price = "Price is required";
-
+        if (price < 0) frontE.price = "Please enter a valid price!";
 
         setFrontErrors(frontE)
 

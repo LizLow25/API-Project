@@ -69,6 +69,7 @@ const SpotForm = () => {
         if (!name.length) frontE.name = "Name is required";
         if (description.length < 30) frontE.description = "Description needs a minimum of 30 characters";
         if (!price.length) frontE.price = "Price is required";
+        if (price < 0) frontE.price = "Please enter a valid price!";
         if (!previewImage) frontE.previewImage = "Preview image is required"
         if (!(previewImage.endsWith('.jpg') || previewImage.endsWith('.png') || previewImage.endsWith('.jpeg')) && previewImage) frontE.previewImage = "Image URL must end in .png, .jpg, or .jpeg"
         if (!(url2.endsWith('.jpg') || url2.endsWith('.png') || url2.endsWith('.jpeg')) && url2) frontE.url2 = "Image URL must end in .png, .jpg, or .jpeg"
