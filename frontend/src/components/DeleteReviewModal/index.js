@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import './DeleteReview.css'
 import { deleteReviewAction } from '../../store/reviews';
 import { loadSpotDetailsAction } from '../../store/spots';
+import { loadSpotReviewsAction } from '../../store/reviews';
 
 
 
@@ -16,7 +17,8 @@ function DeleteReviewModal({ id, spotId }) {
 
     const deleteReviewClick = async () => {
         await dispatch(deleteReviewAction(id))
-        await dispatch(loadSpotDetailsAction(spotId))
+        // await dispatch(loadSpotDetailsAction(spotId))
+        await dispatch(loadSpotReviewsAction(spotId))
         return closeModal()
 
     }

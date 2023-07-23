@@ -3,14 +3,14 @@ margin: 5px;
 
 }
 
-.updatedeletespotbutton {
+/* .updatedeletespotbutton {
     list-style: none;
     margin: 10px 10px 10px 0;
     color: white;
     background-color: grey;
     box-shadow: 2px 3px 3px black;
 
-}
+} */
 
 .spotcards {
     display: grid;
@@ -19,5 +19,6 @@ margin: 5px;
 
 .buttoncontainer {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    /* justify-content: space-around; */
 }

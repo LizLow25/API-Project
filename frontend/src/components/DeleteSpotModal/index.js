@@ -25,10 +25,10 @@ function DeleteSpotModal({ spot }) {
                 <h3 className='suredeletespot'>Are you sure you want to remove this spot
                     from the listings?</h3>
                 <button
-                    className='deletespotbutton'
+                    className='deletereviewbutton'
                     onClick={deleteSpotClick}>Yes (Delete Spot)</button>
                 <button
-                    className='dontdeletespotbutton'
+                    className='dontdeletereviewbutton'
                     onClick={closeDelete}>No (Keep Spot)</button>
             </div>
         </div>

@@ -49,7 +49,8 @@ function ProfileButton() {
 
             <button onClick={openMenu} className="navbutton">
                 <i className="fa-solid fa-bars fa-2x"></i>
-                <i className="fas fa-user-circle fa-2x" />
+                {user ? <img className='profileimage2' src={user?.image} /> : <i className="fas fa-user-circle fa-2x" />}
+
             </button>
 
             <ul className={ulClassName} ref={ulRef}>
@@ -57,36 +58,40 @@ function ProfileButton() {
                     <>
 
                         <div className="userdropcontainer">
-                            <div className="toppart">
-                                <li>{`Hello, ${user.firstName}`}</li>
-                                <li>{user.email}</li>
-                            </div>
-                            <li className="managespots">
-                                <NavLink className="managespots" exact to='/spots/current'>Manage Spots</NavLink>
-                            </li>
-                            <li className="managespots">
-                                <NavLink className="managespots" exact to='/bookings'>Trips</NavLink>
-                            </li>
-                            <li>
-                                <button
-                                    className="userlogoutbutton"
-                                    onClick={logout}>Log Out</button>
-                            </li>
+                            <div className="loggedinusercont">
+                                <div className="toppart">
+                                    <li>{`Hello, ${user.firstName}`}</li>
+                                    {/* <li>{user.email}</li> */}
+                                </div>
+                                <li className="managespots">
+                                    <NavLink className="managespots" exact to='/spots/current'>Manage Spots</NavLink>
+                                </li>
+                                <li className="managespots">
+                                    <NavLink className="managespots" exact to='/bookings'>Trips</NavLink>
+                                </li>
+                                <div className="logoutbuttoncontainer">
+
+                                    <button
+                                        className="userlogoutbutton"
+                                        onClick={logout}>Log Out</button></div>
+                                </div>
                         </div>
                     </>
                 ) : (
                     <>
                         <div className="userdropcontainer">
-                            <OpenModalMenuItem
-                                itemText="Log In"
-                                onItemClick={closeMenu}
-                                modalComponent={<LoginFormModal />}
-                            />
-                            <OpenModalMenuItem
-                                itemText="Sign Up"
-                                onItemClick={closeMenu}
-                                modalComponent={<SignupFormModal />}
-                            />
+                            <div className="dropoption">
+                                <OpenModalMenuItem
+                                    itemText="Log In"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<LoginFormModal />}
+                                /></div>
+                            <div className="dropoption">
+                                <OpenModalMenuItem
+                                    itemText="Sign Up"
+                                    onItemClick={closeMenu}
+                                    modalComponent={<SignupFormModal />}
+                                /></div>
                         </div>
                     </>
                 )}

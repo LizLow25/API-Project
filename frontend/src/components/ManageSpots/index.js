@@ -23,6 +23,19 @@ const ManageSpots = () => {
 
     }, [dispatch])
 
+    if (user && !spots?.length) {
+        return (
+            <div>
+                <h2>AirRV it.</h2>
+                <h3>You could earn</h3>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange"/>
+                </div>
+
+            </div>
+        )
+    }
+
 
 
 
@@ -31,6 +44,7 @@ const ManageSpots = () => {
             <h2>Manage Spots</h2>
             <div className='managepage'>
                 {user && !spots.length ? <Link to='/spots/new'><button>Create New Spot</button></Link> : ''}
+
                 <div className='spotcards'>
                     {spots?.map((spot) => (
                         <div key={spot.id} className='managespotcard'>
@@ -42,8 +56,8 @@ const ManageSpots = () => {
 
                             <div className='buttoncontainer'>
 
-                                <Link exact to={`/spots/${spot.id}/edit`}><button className='updatedeletespotbutton'>Update</button></Link>
-                                <button className='updatedeletespotbutton'><OpenModalMenuItem
+                                <Link exact to={`/spots/${spot.id}/edit`}><button className='modalbutton'>Update</button></Link>
+                                <button className='modalbutton'><OpenModalMenuItem
                                     itemText="Delete"
                                     modalComponent={<DeleteSpotModal spot={spot} />}
                                 /></button>

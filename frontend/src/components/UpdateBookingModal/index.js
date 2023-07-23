@@ -3,58 +3,60 @@ import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getUserBookingsThunk, updateBookingThunk } from "../../store/bookings";
+import './UpdateBookingModal.css'
 
 function UpdateBookingModal({ booking }) {
-    // Initializing stuff
-    const { closeModal } = useModal();
-    const dispatch = useDispatch();
-    const history = useHistory();
+  // Initializing stuff
+  const { closeModal } = useModal();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const formatDate = (dateString) => {
-      if (!dateString) return;
-      const date = new Date(dateString);
-      return date.toISOString().split("T")[0];
-    };
+  const formatDate = (dateString) => {
+    if (!dateString) return;
+    const date = new Date(dateString);
+    return date.toISOString().split("T")[0];
+  };
 
-    // State
-    const [startDate, setStartDate] = useState(
-      formatDate(booking?.startDate) || ""
-    );
-    const [endDate, setEndDate] = useState(formatDate(booking?.endDate) || "");
-    const [errors, setErrors] = useState({});
+  // State
+  const [startDate, setStartDate] = useState(
+    formatDate(booking?.startDate) || ""
+  );
+  const [endDate, setEndDate] = useState(formatDate(booking?.endDate) || "");
+  const [errors, setErrors] = useState({});
 
-    // Building review object for thunk prop
-    const form = {};
-    form.startDate = startDate;
-    form.endDate = endDate;
+  // Building review object for thunk prop
+  const form = {};
+  form.startDate = startDate;
+  form.endDate = endDate;
 
-    // Dispatching thunk on button click
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+  // Dispatching thunk on button click
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      const newErrors = {};
-      if (new Date() > new Date(startDate).getTime())
-        newErrors["startDate"] = "Start date must be in the future!";
-      if (!startDate) newErrors["startDate"] = "Please select a start date!";
-      if (new Date(endDate) < new Date(startDate).getTime())
-        newErrors["endDate"] = "End date must be after the start date!";
-      if (!endDate) newErrors["endDate"] = "Please select an end date!";
+    const newErrors = {};
+    if (new Date() > new Date(startDate).getTime())
+      newErrors["startDate"] = "Start date must be in the future!";
+    if (!startDate) newErrors["startDate"] = "Please select a start date!";
+    if (new Date(endDate) < new Date(startDate).getTime())
+      newErrors["endDate"] = "End date must be after the start date!";
+    if (!endDate) newErrors["endDate"] = "Please select an end date!";
 
-      setErrors(newErrors);
-      if (Object.keys(newErrors).length) return;
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length) return;
 
-      await dispatch(updateBookingThunk(form, booking.id));
-      await dispatch(getUserBookingsThunk())
+    await dispatch(updateBookingThunk(form, booking.id));
+    await dispatch(getUserBookingsThunk())
 
-      return closeModal();
-    };
+    return closeModal();
+  };
 
-    return (
-      <div className="booking-modal-container">
-        <h1>Update your Reservation!</h1>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Start Date <span className="errors">{errors.startDate}</span>
+  return (
+    <div className="booking-modal-container">
+      <h2>Change in plans?</h2>
+      <form className='bookingsform' onSubmit={handleSubmit}>
+        <div className='checkformbox'>
+          <label className='datebox'>
+            CHECK-IN <span className="errors">{errors.startDate}</span>
             <input
               type="date"
               value={startDate}
@@ -63,8 +65,8 @@ function UpdateBookingModal({ booking }) {
               className="start-date"
             />
           </label>
-          <label>
-            End Date <span className="errors">{errors.endDate}</span>
+          <label className='datebox right'>
+            CHECKOUT <span className="errors">{errors.endDate}</span>
             <input
               type="date"
               value={endDate}
@@ -73,18 +75,20 @@ function UpdateBookingModal({ booking }) {
               className="end-date"
             />
           </label>
-          <div className="post-booking-button-container">
-            <button
-              type="submit"
-              className="post-booking-button"
+        </div>
 
-            >
-              Reserve
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  }
+        <div className="post-booking-button-container">
+          <button
+            type="submit"
+            className="post-booking-button"
+          //   disabled={disabled}
+          >
+            Reserve
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
 
-  export default UpdateBookingModal;
+export default UpdateBookingModal;

@@ -48,6 +48,7 @@ router.post(
             id: user.id,
             email: user.email,
             username: user.username,
+            image: user.image,
             firstName: user.firstName,
             lastName: user.lastName
         };
@@ -77,6 +78,7 @@ router.get(
                 id: user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
+                image: user.image,
                 email: user.email,
                 username: user.username,
             };

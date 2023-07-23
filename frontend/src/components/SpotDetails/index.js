@@ -166,14 +166,13 @@ const SpotDetails = () => {
             <div>
                 <h3><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</h3>
             </div>
-            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button
-                className='spotdetailsfirstreviewbutton'
+            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button className='modalbutton'
 
             ><OpenModalMenuItem
                     itemText="Be the First to Post a Review!"
                     modalComponent={<CreateReviewModal spotId={spotId} />}
                 /></button> : ''}
-            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button className='spotdetailsfirstreviewbutton'><OpenModalMenuItem
+            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button className='modalbutton'><OpenModalMenuItem
                 itemText="Post Your Review!"
                 modalComponent={<CreateReviewModal spotId={spotId} />}
             /></button> : ''}
@@ -189,7 +188,7 @@ const SpotDetails = () => {
                             month: "long"
                         }) : ''}</p>
                         <p className='reviewdat'>{review.review}</p>
-                        {user && user?.id === review.User?.id ? <button className='spotdetailsfirstreviewbutton'><OpenModalMenuItem
+                        {user && user?.id === review.User?.id ? <button className='modalbutton'><OpenModalMenuItem
                             itemText="Delete"
                             modalComponent={<DeleteReviewModal id={review.id} spotId={spotId} />}
                         /></button> : ''}

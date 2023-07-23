@@ -93,8 +93,12 @@
     margin: 30px;
     background-color: #FF385C;
     color: white;
-    box-shadow: 1px 5px 5px black;
     width: 200px;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .formpartsix {
