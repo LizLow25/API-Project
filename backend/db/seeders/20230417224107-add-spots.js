@@ -29,7 +29,7 @@ module.exports = {
         lat: 10.4317,
         lng: 85.7846,
         name: 'Costa Rican Mountain Retreat',
-        description: 'Experience pura vida in the Costa Rican mountains.',
+        description: 'Welcome to our enchanting Costa Rican Mountain Retreat! Nestled amidst the lush greenery of the tropical rainforest, this secluded haven offers a truly immersive and rejuvenating escape from the bustling world. If you seek tranquility, breathtaking views, and a connection with nature, this is the place to be.',
         price: 20.99
       },
       {
@@ -40,8 +40,8 @@ module.exports = {
         country: 'USA',
         lat: 43.6558,
         lng: 110.7183,
+        description: "Welcome to our charming Partially Restored 1920s Sheep Wagon in the breathtaking landscapes of Wyoming! Nestled amidst the rolling plains and majestic mountains, this unique accommodation offers a one-of-a-kind experience that combines rustic charm with modern comforts. Step back in time as you enter our lovingly restored 1920s Sheep Wagon, a testament to Wyoming's rich history and the adventurous spirit of the American West. While maintaining its authentic exterior, the interior has been thoughtfully updated to provide you with a cozy and comfortable stay. The wagon features a snug double bed adorned with soft linens and blankets, guaranteeing a restful night's sleep under the stars. Warm lighting and rustic décor create an inviting atmosphere that reflects the wagon's historical significance.",
         name: 'Partially Restored 1920s Sheep Wagon',
-        description: 'Rent your mobile dreamhome and go offroad in the wilds of Wyoming.',
         price: 70.99
       },
       {
@@ -52,8 +52,8 @@ module.exports = {
         country: 'USA',
         lat: 35.5951,
         lng: 82.5515,
-        name: "Hippie Retreat in the NC Moutains",
-        description: 'Come read colorful books with your hip friends.',
+        name: "Hippie Retreat in the NC Mountains",
+        description: "Escape the hustle and bustle of everyday life and immerse yourself in the serene beauty of the North Carolina Mountains. Nestled among tall trees and surrounded by breathtaking vistas, our charming Airstream trailer offers a unique and unforgettable vacation experience. Step inside our lovingly restored Airstream trailer, which has been transformed into a cozy and comfortable haven for the modern-day hippie. The interior features a bohemian-inspired decor, creating a laid-back atmosphere that invites you to unwind and find your inner peace. The comfortable sleeping arrangements ensure a good night's rest, allowing you to wake up refreshed and ready to explore the wonders of the mountains.",
         price: 40.99
       },
       {
@@ -65,7 +65,7 @@ module.exports = {
         lat: 36.6438,
         lng: 116.4003,
         name: "Glamping Near Death Valley",
-        description: 'Star watch and listen to the silence in the Nevada desert.',
+        description: "While we offer an authentic connection with nature, we understand the importance of convenience. Our Glamping site features shared bathroom facilities with hot showers, allowing you to freshen up after a day of exploring. Additionally, you'll have access to a communal area where you can socialize with fellow travelers, share stories, or simply relax around a crackling fire pit under the star-studded desert sky. As the property is situated amidst a beautiful vineyard, guests have the unique opportunity to take part in vineyard tours and wine tastings. Explore the art of winemaking and savor a variety of locally produced wines, each with distinct flavors that reflect the essence of the region.",
         price: 80.50
       },
       {
@@ -77,7 +77,7 @@ module.exports = {
         lat: 32.7157,
         lng: 117.1611,
         name: 'Beachside Airstream Retreat',
-        description: 'Live the beach life in sunny San Diego.',
+        description: "Welcome to the Beachside Airstream Retreat in sunny San Diego, where paradise awaits just 4 blocks from the glistening ocean! Nestled in a charming coastal neighborhood, this unique Airbnb offers an unforgettable vacation experience that combines the comfort of a modern Airstream with the tranquility of a beachside escape. Our thoughtfully designed Airstream provides a cozy and stylish home-away-from-home. Inside, you'll find a well-appointed living area complete with a plush sofa, dining nook, and a fully equipped kitchenette. The Airstream comfortably accommodates 3, making it perfect for a romantic getaway or a fun-filled family adventure.",
         price: 212
       },
       {
@@ -89,7 +89,7 @@ module.exports = {
         lat: 46.5254,
         lng: 122.5904,
         name: 'VanLife on Mayfield Lake',
-        description: 'Get closer to nature on a nine acre private retreat.',
+        description: "Welcome to our cozy and unique Airstream trailer nestled on the shores of the breathtaking Mayfield Lake! If you're looking for a tranquil escape surrounded by nature, our secluded oasis on 9 private acres is the perfect destination for you. Our vintage Airstream offers a charming and comfortable stay for up to four guests. The interior boasts a tasteful blend of modern amenities and rustic charm. The cozy sleeping arrangements ensure a restful night's sleep, and the well-appointed kitchenette lets you prepare simple meals while enjoying stunning views of the lake.",
         price: 175
       },
       {
@@ -101,7 +101,7 @@ module.exports = {
         lat: 35.2495,
         lng: 112.1910,
         name: 'Stargazing in the Desert',
-        description: 'This special retreat offers a radiotelescope and free gummy bears.',
+        description: "Prepare to be mesmerized by the celestial wonders that adorn the Williams' night sky. Away from the bright lights of the city, the campervan's location offers unparalleled stargazing opportunities. Gaze up at a tapestry of stars, planets, and constellations that will leave you in awe of the universe's grandeur. Whether you're an amateur astronomer or simply enjoy the magic of a starlit night, our campervan's spot is a stargazer's dream come true.",
         price: 250
       },
       {
@@ -113,7 +113,7 @@ module.exports = {
         lat: 42.5558,
         lng: 114.4701,
         name: 'Funky Retreat Under Idaho Skies',
-        description: 'Enjoy glamping near a college town.',
+        description: "Welcome to the grooviest getaway in Twin Falls, Idaho - our one-of-a-kind funky trailer! If you're looking for a unique and adventurous stay, this is the place for you. Step back in time and experience the magic of the 70s with a modern twist in our retro-inspired trailer. Nestled amidst the breathtaking landscapes of Twin Falls, our funky trailer offers an escape like no other. You'll be just a stone's throw away from some of Idaho's most iconic attractions, including the majestic Shoshone Falls and the awe-inspiring Perrine Bridge. Nature lovers and adventure seekers will find an array of outdoor activities and hiking trails nearby.",
         price: 165
       },
       {

@@ -44,6 +44,14 @@ module.exports = {
         username: 'harper',
         image: 'https://everetsybucket.s3.us-west-1.amazonaws.com/user3.png',
         hashedPassword: bcrypt.hashSync('password')
+      },
+      {
+        firstName: 'Demo',
+        lastName: 'User',
+        email: 'demo@user.io',
+        username: 'demo1',
+        image: 'https://everetsybucket.s3.us-west-1.amazonaws.com/user4.png',
+        hashedPassword: bcrypt.hashSync('password')
       }
     ], {})
 
