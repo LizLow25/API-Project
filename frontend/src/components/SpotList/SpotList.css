@@ -11,3 +11,24 @@
 .spotlink {
     text-decoration: none;
 }
+
+.person-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin: 20px 40px 40px 40px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.862);
+}
+
+.person-container>p {
+    margin-right: 10px;
+}
+
+.link-container>a {
+    margin: 10px;
+}
+
+.fa-brands {
+    color: rgba(0, 0, 0, 0.862);
+}
