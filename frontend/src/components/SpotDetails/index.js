@@ -111,8 +111,8 @@ const SpotDetails = () => {
             <div className='infocontainer'>
                 <div className='spotdetailsleftcontainer'>
                     <div className='hostinfo'>
-                    <h3>{`Hosted by ${spotData.Owner?.firstName}`} </h3>
-                    <img className='profileimage' src={spotData.Owner?.image}/>
+                        <h3>{`Hosted by ${spotData.Owner?.firstName}`} </h3>
+                        <img className='profileimage' src={spotData.Owner?.image} />
                     </div>
                     <p>{spotData.description}</p>
                 </div>
@@ -126,26 +126,26 @@ const SpotDetails = () => {
                         <span className="errors">{backErrors.backend}</span>
                         <form className='bookingsform' onSubmit={handleSubmit}>
                             <div className='checkformbox'>
-                            <label className='datebox'>
-                                CHECK-IN <span className="errors">{errors.startDate}</span>
-                                <input
-                                    type="date"
-                                    value={startDate}
-                                    placeholder="Start Date"
-                                    onChange={(e) => setStartDate(e.target.value)}
-                                    className="start-date"
-                                />
-                            </label>
-                            <label className='datebox right'>
-                                CHECKOUT <span className="errors">{errors.endDate}</span>
-                                <input
-                                    type="date"
-                                    value={endDate}
-                                    placeholder="End Date"
-                                    onChange={(e) => setEndDate(e.target.value)}
-                                    className="end-date"
-                                />
-                            </label>
+                                <label className='datebox'>
+                                    CHECK-IN <span className="errors">{errors.startDate}</span>
+                                    <input
+                                        type="date"
+                                        value={startDate}
+                                        placeholder="Start Date"
+                                        onChange={(e) => setStartDate(e.target.value)}
+                                        className="start-date"
+                                    />
+                                </label>
+                                <label className='datebox right'>
+                                    CHECKOUT <span className="errors">{errors.endDate}</span>
+                                    <input
+                                        type="date"
+                                        value={endDate}
+                                        placeholder="End Date"
+                                        onChange={(e) => setEndDate(e.target.value)}
+                                        className="end-date"
+                                    />
+                                </label>
                             </div>
 
                             <div className="post-booking-button-container">
@@ -180,13 +180,18 @@ const SpotDetails = () => {
                 {shallowReview.length ? shallowReview.map((review) => (
                     <li key={review.id} className='reviewlistinner'>
                         <div className='reviewuserinfo'>
-                        <img className='profileimage' src={review.User?.image} />
-                        <h3 className='reviewdat'>{review.User?.firstName}</h3>
+                            <img className='profileimage' src={review.User?.image} />
+                            <div>
+                                <h3 className='reviewdat'>{review.User?.firstName}</h3>
+
+                                <div className='reviewdate'>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
+                                    year: "numeric",
+                                    month: "long"
+                                }) : ''}</div>
+
+                            </div>
                         </div>
-                        <p className='reviewdate'>{review.createdAt ? new Date(review.createdAt).toLocaleDateString('en-US', {
-                            year: "numeric",
-                            month: "long"
-                        }) : ''}</p>
+
                         <p className='reviewdat'>{review.review}</p>
                         {user && user?.id === review.User?.id ? <button className='modalbutton'><OpenModalMenuItem
                             itemText="Delete"

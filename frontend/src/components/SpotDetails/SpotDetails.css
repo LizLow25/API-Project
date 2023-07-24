@@ -21,6 +21,7 @@
     flex-wrap: wrap;
     width: 50%;
     justify-content: center;
+    overflow: hidden;
 
 }
 
@@ -38,7 +39,8 @@
 
 .innerpicture {
     object-fit: cover;
-    width: 48%
+    width: 49%;
+    height: 49.6%;
 }
 
 
@@ -93,12 +95,7 @@
     padding-bottom: 20px;
 }
 
-.spotdetailsfirstreviewbutton {
-    list-style-type: none;
-    color: white;
-    background-color: grey;
-    box-shadow: 2px 3px 3px black;
-}
+
 
 .pricedetails {
     font-size: 20px;
@@ -107,10 +104,12 @@
 .reviewdate {
     margin: 5px 0;
     color: grey;
+    padding-left: 10px;
 }
 
 .reviewdat  {
-    margin: 10px 0;
+    margin: 0px;
+
 }
 
 .two {
@@ -193,6 +192,7 @@
 
 .reviewuserinfo {
     display: flex;
+    align-items: center;
 }
 
 .reviewdat {

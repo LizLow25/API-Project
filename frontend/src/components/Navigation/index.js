@@ -9,7 +9,9 @@ function Navigation({ isLoaded }) {
 
   return (
     <ul className='navbar'>
-      <li>
+
+      <li className='logocontainernav'>
+        <img className='logopic' src='https://everetsybucket.s3.us-west-1.amazonaws.com/favicon.png'/> &nbsp;&nbsp;
         <NavLink className='logo' exact to="/">airRV</NavLink>
       </li>
       <div className='rightside'>
