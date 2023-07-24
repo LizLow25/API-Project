@@ -198,3 +198,12 @@
 .reviewdat {
     padding: 10px;
 }
+
+.reviewbar {
+    display: flex;
+    align-items: center;
+}
+
+.starheaderdetails {
+    padding-right: 10px;
+}

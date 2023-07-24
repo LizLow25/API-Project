@@ -9,6 +9,8 @@ import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import DeleteReviewModal from '../DeleteReviewModal';
 import { createBookingThunk, getUserBookingsThunk } from '../../store/bookings';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import OpenModalButton from "../OpenModalButton";
+
 
 const SpotDetails = () => {
     const dispatch = useDispatch();
@@ -163,19 +165,18 @@ const SpotDetails = () => {
 
             </div>
 
-            <div>
-                <h3><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</h3>
-            </div>
-            {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <button className='modalbutton'
+            <div className='reviewbar'>
+                <h3 className='starheaderdetails'><i className="fa-solid fa-star"></i> {spotData.avgStarRating ? spotData.avgStarRating.toFixed(2) : "New"}{spotData.numReviews ? spotData.numReviews === 1 ? ` · ${spotData.numReviews} Review` : ` · ${spotData.numReviews} Reviews` : ''}</h3>
 
-            ><OpenModalMenuItem
-                    itemText="Be the First to Post a Review!"
-                    modalComponent={<CreateReviewModal spotId={spotId} />}
-                /></button> : ''}
-            {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ? <button className='modalbutton'><OpenModalMenuItem
-                itemText="Post Your Review!"
-                modalComponent={<CreateReviewModal spotId={spotId} />}
-            /></button> : ''}
+                {user && spotData.numReviews === 0 && user?.id != spotData.ownerId ? <OpenModalButton
+                    buttonText="Post your review"
+                    modalComponent={<CreateReviewModal spotId={spotId} />} /> : ''}
+                {user && user?.id != spotData.ownerId && !priorReviewUsers.includes(user?.id) && spotData.numReviews !== 0 ?
+                    <OpenModalButton
+                        buttonText="Post your review"
+                        modalComponent={<CreateReviewModal spotId={spotId} />} /> : ''}
+
+            </div>
             <ul className='reviewlist'>
                 {shallowReview.length ? shallowReview.map((review) => (
                     <li key={review.id} className='reviewlistinner'>
@@ -193,10 +194,10 @@ const SpotDetails = () => {
                         </div>
 
                         <p className='reviewdat'>{review.review}</p>
-                        {user && user?.id === review.User?.id ? <button className='modalbutton'><OpenModalMenuItem
-                            itemText="Delete"
+                        {user && user?.id === review.User?.id ? <OpenModalButton
+                            buttonText="Delete"
                             modalComponent={<DeleteReviewModal id={review.id} spotId={spotId} />}
-                        /></button> : ''}
+                        /> : ''}
 
                     </li>
                 )) : ''}
